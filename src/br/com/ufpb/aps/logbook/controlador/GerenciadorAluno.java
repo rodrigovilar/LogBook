@@ -28,8 +28,9 @@ public class GerenciadorAluno extends Exception {
 	public Aluno EditarDadosAluno(Aluno aluno) {
 		for (Aluno a : listaTodosAlunos) {
 			if (aluno.getMatricula().equals(a.getMatricula())) {
-				a = aluno;
-				listaTodosAlunos.add(a);
+				a.setEmail(aluno.getEmail());
+				a.setLogin(aluno.getLogin());
+//TODO				
 				return a;
 			}
 		}
@@ -43,11 +44,9 @@ public class GerenciadorAluno extends Exception {
 
 			if (b.getMatricula().equalsIgnoreCase(matricula)) {
 				listaTodosAlunos.remove(b);	
+				return;
 			}
 		}
-		
-		System.out.println(listaTodosAlunos.size());
-
 	}
 
 	public String listarAlunos() {
