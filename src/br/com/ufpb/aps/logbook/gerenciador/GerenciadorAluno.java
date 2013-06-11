@@ -1,9 +1,9 @@
-package br.com.ufpb.aps.logbok.gerenciador;
+package br.com.ufpb.aps.logbook.gerenciador;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.ufpb.aps.logbok.entidade.Aluno;
+import br.com.ufpb.aps.logbook.entidade.Aluno;
 
 public class GerenciadorAluno {
 

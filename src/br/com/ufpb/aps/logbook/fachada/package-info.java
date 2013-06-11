@@ -5,4 +5,4 @@
  * @author Nando
  *
  */
-package br.com.ufpb.aps.logbok.fachada;
+package br.com.ufpb.aps.logbook.fachada;

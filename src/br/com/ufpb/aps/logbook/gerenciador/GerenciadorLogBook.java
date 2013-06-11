@@ -1,10 +1,10 @@
-package br.com.ufpb.aps.logbok.gerenciador;
+package br.com.ufpb.aps.logbook.gerenciador;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.ufpb.aps.logbok.entidade.Pratica;
-import br.com.ufpb.aps.logbok.entidade.Professor;
+import br.com.ufpb.aps.logbook.entidade.Pratica;
+import br.com.ufpb.aps.logbook.entidade.Professor;
 
 public class GerenciadorLogBook {
 

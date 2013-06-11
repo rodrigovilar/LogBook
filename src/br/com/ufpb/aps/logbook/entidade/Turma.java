@@ -1,4 +1,4 @@
-package br.com.ufpb.aps.logbok.entidade;
+package br.com.ufpb.aps.logbook.entidade;
 
 import java.util.ArrayList;
 import java.util.List;
