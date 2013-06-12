@@ -7,8 +7,6 @@ import br.com.ufpb.aps.logbook.entidade.Disciplina;
 import br.com.ufpb.aps.logbook.entidade.Turma;
 import br.com.ufpb.aps.logbook.excecao.Excecao;
 
-//import br.com.ufpb.aps.logbok.entidade.Aluno;
-
 public class GerenciadorDisciplina {
 
 	private List<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
@@ -33,7 +31,6 @@ public class GerenciadorDisciplina {
 
 	public List<Disciplina> listaDisciplinas() {
 		return listaDisciplinas;
-
 	}
 
 	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
@@ -53,7 +50,6 @@ public class GerenciadorDisciplina {
 		if (disciplina.getCodigoDisciplina() == codigoDisciplina){
 			this.listaDisciplinas.remove(disciplina);
 		}
-		//listaDisciplinas.remove(codigoDisciplina);
 	}
 
 	public List<Disciplina> getListaDisciplinas() {

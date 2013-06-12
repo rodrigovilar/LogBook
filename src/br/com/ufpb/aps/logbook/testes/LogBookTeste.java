@@ -52,7 +52,7 @@ public class LogBookTeste {
 		// REMOVE ENTIDADE
 		fachada.deletarAluno("80911008");
 		Assert.assertTrue(fachada.listaTodosAlunos().isEmpty());
-		
+
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class LogBookTeste {
 		// REMOVE ENTIDADE
 		fachada.deletarDisciplina("001");
 		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
-		
+
 	}
 
 	@Test
@@ -107,7 +107,7 @@ public class LogBookTeste {
 		// REMOVE ENTIDADE
 		fachada.deletarPratica("001");
 		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
-		
+
 	}
 
 	@Test
@@ -137,7 +137,7 @@ public class LogBookTeste {
 		// REMOVE ENTIDADE
 		fachada.deletarProfessor("60");
 		// Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
-		
+
 	}
 
 	@Test
@@ -164,6 +164,29 @@ public class LogBookTeste {
 
 	}
 	
+	@Ignore
+	public void testCrudPergunta() {
+
+		Pergunta t1 = new Per();
+		t1.setCodigo("001");
+
+		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
+		// CREATE ENTIDADE
+		fachada.adicionarTurma(t1);
+		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
+		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		// UPDATE ENTIDADE
+		t1.setCodigo("001");
+		fachada.editarTurma(t1);
+		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
+		Assert.assertEquals("001", fachada.pesquisarTurma("001").getCodigo());
+		// GET ENTIDADE
+		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		// REMOVE ENTIDADE
+		fachada.deletarTurma("001");
+		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+
+	}
 
 	// inserir Aluno - OK
 	// inserir Professor - OK

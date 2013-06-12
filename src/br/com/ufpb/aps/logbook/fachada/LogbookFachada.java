@@ -7,12 +7,14 @@ import br.com.ufpb.aps.logbook.controlador.GerenciadorDisciplina;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorLogBook;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorPratica;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorProfessor;
+import br.com.ufpb.aps.logbook.controlador.GerenciadorResposta;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorTurma;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorUsuario;
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
 import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Professor;
+import br.com.ufpb.aps.logbook.entidade.Resposta;
 import br.com.ufpb.aps.logbook.entidade.Turma;
 import br.com.ufpb.aps.logbook.entidade.Usuario;
 
@@ -25,6 +27,7 @@ public class LogbookFachada {
 	GerenciadorPratica gpratica = new GerenciadorPratica();
 	GerenciadorTurma gturma = new GerenciadorTurma();
 	GerenciadorUsuario gusuario = new GerenciadorUsuario();
+	GerenciadorResposta gresposta = new GerenciadorResposta();
 
 	// Datos do Aluno
 	public void adicionarAluno(Aluno aluno) {
@@ -115,8 +118,27 @@ public class LogbookFachada {
 		return gprofessor.listaTodosProfessores();
 	}
 
-	// TODO: Dados da Resposta
-
+	//Dados da Resposta
+	public void adicionarRespota(Resposta novaResposta) {
+		gresposta.adicionarRespota(novaResposta);
+	}
+	
+	public Resposta editarResposta(Resposta resposta) {
+		return gresposta.editarResposta(resposta);
+	}
+	
+	public Resposta pesquisarResposta(String codResposta) {
+		return gresposta.pesquisarResposta(codResposta);
+	}
+	
+	public void deletarRespota(String codResposta) {
+		gresposta.deletarRespota(codResposta);
+	}
+	
+	public List<Resposta> listaRespostas() {
+		return gresposta.getListaRespostas();
+	}
+	
 	// Dados da Turma
 	public void adicionarTurma(Turma novaTurma) {
 		gturma.adicionarTurma(novaTurma);

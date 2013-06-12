@@ -11,5 +11,12 @@ import br.com.ufpb.aps.logbook.entidade.Professor;
 public class GerenciadorLogBook {
 
 	private List<LogBook> listaLogBooks = new ArrayList<LogBook>();
-	
+
+	public List<LogBook> getListaLogBooks() {
+		return listaLogBooks;
+	}
+
+	public void setListaLogBooks(List<LogBook> listaLogBooks) {
+		this.listaLogBooks = listaLogBooks;
+	}
 }
