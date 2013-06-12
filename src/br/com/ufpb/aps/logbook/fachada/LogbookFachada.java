@@ -76,12 +76,23 @@ public class LogbookFachada {
 	}
 
 	//Dados do LogBook
+	public void adicionarLogBook(LogBook logbook) {
+		glogbook.adicionarLogBook(logbook);		
+	}
 	public LogBook editarLogBook(LogBook logbook) {
 		return glogbook.editarLogBook(logbook);
 	}
 	
 	public List<LogBook> listaLogBooks() {
 		return glogbook.listaLogBooks();
+	}
+	
+	public LogBook pesquisaLogBook(String codLogBook) {
+		return glogbook.pesquisarLogBook(codLogBook);
+	}
+	
+	public void deletarLogBook(String codLogBook) {
+		glogbook.deletarLogBook(codLogBook);
 	}
 
 	// Dados da Pergunta
@@ -209,4 +220,5 @@ public class LogbookFachada {
 	public Usuario editarUsuario(Usuario usuario){
 		return gusuario.editarUsuario(usuario);
 	}
+
 }

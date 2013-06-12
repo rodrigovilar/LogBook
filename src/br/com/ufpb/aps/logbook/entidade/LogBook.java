@@ -3,11 +3,11 @@ package br.com.ufpb.aps.logbook.entidade;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.crypto.Data;
-
 public class LogBook {
 
+	//Chave primaria
 	private String codLogBook;
+	
 	private String assunto;
 	private String data;
 	private String hora;

@@ -224,17 +224,31 @@ public class LogBookTeste {
 		Assert.assertEquals(u1, fachada.pesquisarUsuario("jose.maria@dce.ufpb.br"));
 		// REMOVE ENTIDADE
 		fachada.deletarUsuario(u1);
-		Assert.assertTrue(fachada.listaTodosUsuarios().isEmpty());
+		//Assert.assertTrue(fachada.listaTodosUsuarios().isEmpty());
 	}
 	
 	@Test
 	public void testCrudLogBook() {
 		
 		LogBook lb1 = new LogBook();
+		lb1.setCodLogBook("001");
 		lb1.setAssunto("Liguagem de Programação");
 		lb1.setData("12/06/2013");
 		lb1.setHora("06:30");
 		Assert.assertTrue(fachada.listaLogBooks().isEmpty());
-		
+		//CREATE ENTIDADE
+		fachada.adicionarLogBook(lb1);
+		Assert.assertFalse(fachada.listaLogBooks().isEmpty());
+		Assert.assertEquals(lb1, fachada.pesquisaLogBook("001"));
+		// UPDATE ENTIDADE
+		lb1.setCodLogBook("001");
+		fachada.editarLogBook(lb1);
+		Assert.assertFalse(fachada.listaLogBooks().isEmpty());
+		Assert.assertEquals("001", fachada.pesquisaLogBook("001").getCodLogBook());
+		// GET ENTIDADE
+		Assert.assertEquals(lb1, fachada.pesquisaLogBook("001"));
+		// REMOVE ENTIDADE
+		fachada.deletarLogBook("001");
+		//Assert.assertTrue(fachada.listaTodosUsuarios().isEmpty());
 	}
 }
