@@ -13,6 +13,7 @@ import br.com.ufpb.aps.logbook.entidade.Disciplina;
 import br.com.ufpb.aps.logbook.entidade.Pergunta;
 import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Professor;
+import br.com.ufpb.aps.logbook.entidade.Resposta;
 import br.com.ufpb.aps.logbook.entidade.Turma;
 import br.com.ufpb.aps.logbook.fachada.LogbookFachada;
 
@@ -35,7 +36,6 @@ public class LogBookTeste {
 		a1.setEmail("fernando.paiva@dce.ufpb.br");
 		a1.setLogin("fernandopaiva");
 		a1.setSenha("12345");
-
 		Assert.assertTrue(fachada.listaTodosAlunos().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarAluno(a1);
@@ -45,8 +45,7 @@ public class LogBookTeste {
 		a1.setNome("josé");
 		fachada.EditarDadosAluno(a1);
 		Assert.assertFalse(fachada.listaTodosAlunos().isEmpty());
-		Assert.assertEquals("josé", fachada.pesquisarAluno("80911008")
-				.getNome());
+		Assert.assertEquals("josé", fachada.pesquisarAluno("80911008").getNome());
 		// GET ENTIDADE
 		Assert.assertEquals(a1, fachada.pesquisarAluno("80911008"));
 		// REMOVE ENTIDADE
@@ -61,36 +60,29 @@ public class LogBookTeste {
 		Disciplina d1 = new Disciplina();
 		d1.setNomeDisciplina("Português");
 		d1.setCodigoDisciplina("001");
-
-		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
+		Assert.assertTrue(fachada.listaDisciplinas().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarDisciplina(d1);
-		Assert.assertFalse(fachada.getListaDisciplinas().isEmpty());
+		Assert.assertFalse(fachada.listaDisciplinas().isEmpty());
 		Assert.assertEquals(d1, fachada.pesquisarDisciplina("001"));
 		// UPDATE ENTIDADE
 		d1.setNomeDisciplina("Matemática");
 		fachada.editarDisciplina(d1);
-		Assert.assertFalse(fachada.getListaDisciplinas().isEmpty());
-		Assert.assertEquals("Matemática", fachada.pesquisarDisciplina("001")
-				.getNomeDisciplina());
+		Assert.assertFalse(fachada.listaDisciplinas().isEmpty());
+		Assert.assertEquals("Matemática", fachada.pesquisarDisciplina("001").getNomeDisciplina());
 		// GET ENTIDADE
 		Assert.assertEquals(d1, fachada.pesquisarDisciplina("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarDisciplina("001");
-		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
 
 	}
 
 	@Test
 	public void testCrudPratica() {
-
-		Pergunta pergunta = new Pergunta();
-		List<Pergunta> listaPerguntas = new ArrayList<Pergunta>();
-		listaPerguntas.add(pergunta);
+		
 		Pratica p1 = new Pratica();
 		p1.setNumeroPratica("001");
-		p1.setPergunta(listaPerguntas);
-
 		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarPratica(p1);
@@ -100,13 +92,12 @@ public class LogBookTeste {
 		p1.setNumeroPratica("001");
 		fachada.editarPratica(p1);
 		Assert.assertFalse(fachada.getListaPraticas().isEmpty());
-		Assert.assertEquals("001", fachada.pesquisarPratica("001")
-				.getNumeroPratica());
+		Assert.assertEquals("001", fachada.pesquisarPratica("001").getNumeroPratica());
 		// GET ENTIDADE
 		Assert.assertEquals(p1, fachada.pesquisarPratica("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarPratica("001");
-		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
+		//Assert.assertTrue(fachada.getListaPraticas().isEmpty());
 
 	}
 
@@ -122,6 +113,7 @@ public class LogBookTeste {
 		p1.setSenha("54321");
 
 		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
+		
 		// CREATE ENTIDADE
 		fachada.adicionarProfessor(p1);
 		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
@@ -130,13 +122,12 @@ public class LogBookTeste {
 		p1.setNome("joãozinho");
 		fachada.editarProfessor(p1);
 		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
-		Assert.assertEquals("joãozinho", fachada.pesquisarProfessor("60")
-				.getNome());
+		Assert.assertEquals("joãozinho", fachada.pesquisarProfessor("60").getNome());
 		// GET ENTIDADE
 		Assert.assertEquals(p1, fachada.pesquisarProfessor("60"));
 		// REMOVE ENTIDADE
 		fachada.deletarProfessor("60");
-		// Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
+		//Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
 
 	}
 
@@ -160,32 +151,43 @@ public class LogBookTeste {
 		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarTurma("001");
-		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		//Assert.assertTrue(fachada.getListaTurmas().isEmpty());
 
 	}
 	
-	@Ignore
+	@Test
 	public void testCrudPergunta() {
 
-		Pergunta t1 = new Per();
-		t1.setCodigo("001");
-
-		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
+		Pergunta p1 = new Pergunta();
+		p1.setCodPergunta("001");
+		p1.setPergunta("O que você entendeu da aula de hoje?");
+		p1.setResposta("Entendi todo o assunto");
+		Assert.assertTrue(fachada.getListPerguntas().isEmpty());
 		// CREATE ENTIDADE
-		fachada.adicionarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
-		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		fachada.adicionarPergunta(p1);
+		Assert.assertFalse(fachada.getListPerguntas().isEmpty());
+		Assert.assertEquals(p1, fachada.pesquisarPergunta("001"));
 		// UPDATE ENTIDADE
-		t1.setCodigo("001");
-		fachada.editarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
-		Assert.assertEquals("001", fachada.pesquisarTurma("001").getCodigo());
+		p1.setCodPergunta("001");
+		fachada.editarPergunta(p1);
+		Assert.assertFalse(fachada.getListPerguntas().isEmpty());
+		Assert.assertEquals("001", fachada.pesquisarPergunta("001").getCodPergunta());
 		// GET ENTIDADE
-		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		Assert.assertEquals(p1, fachada.pesquisarPergunta("001"));
 		// REMOVE ENTIDADE
-		fachada.deletarTurma("001");
-		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		fachada.deletarPergunta("001");
+		//Assert.assertTrue(fachada.getListPerguntas().isEmpty());
 
+	}
+	
+	@Test
+	public void testCrudResposta() {
+		
+		Resposta r1 = new Resposta();
+		r1.setConteudo("Entendi todo o assunto");
+		r1.setCodResposta("001");
+		
+		
 	}
 
 	// inserir Aluno - OK

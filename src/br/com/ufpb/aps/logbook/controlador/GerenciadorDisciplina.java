@@ -3,7 +3,9 @@ package br.com.ufpb.aps.logbook.controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.Pergunta;
 import br.com.ufpb.aps.logbook.entidade.Turma;
 import br.com.ufpb.aps.logbook.excecao.Excecao;
 
@@ -28,11 +30,7 @@ public class GerenciadorDisciplina {
 		throw new Excecao(
 				"Não existe está Disciplina com este código no sistema LogBook");
 	}
-
-	public List<Disciplina> listaDisciplinas() {
-		return listaDisciplinas;
-	}
-
+	
 	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
 		Disciplina disciplina = new Disciplina();
 		for (Disciplina d : listaDisciplinas) {
@@ -42,16 +40,29 @@ public class GerenciadorDisciplina {
 		}
 		return disciplina;
 	}
-
+	
+	/*public void deletarDisciplina(String codigoDisciplina) {
+		for(Disciplina d : listaDisciplinas) {
+			if(d.getCodigoDisciplina().equalsIgnoreCase(codigoDisciplina)) {
+				listaDisciplinas.remove(d);
+				return;
+			}
+		}
+	}**/
+	
 	public void deletarDisciplina(String codigoDisciplina) {
 		Disciplina disciplina = new Disciplina();
 		disciplina = this.pesquisarDisciplina(codigoDisciplina);
 		
 		if (disciplina.getCodigoDisciplina() == codigoDisciplina){
-			this.listaDisciplinas.remove(disciplina);
+			this.listaDisciplinas().remove(disciplina);
 		}
 	}
-
+	
+	public List<Disciplina> listaDisciplinas() {
+		return listaDisciplinas;
+	}
+	
 	public List<Disciplina> getListaDisciplinas() {
 		return listaDisciplinas;
 	}

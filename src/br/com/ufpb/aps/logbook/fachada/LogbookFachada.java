@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorAluno;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorDisciplina;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorLogBook;
+import br.com.ufpb.aps.logbook.controlador.GerenciadorPergunta;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorPratica;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorProfessor;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorResposta;
@@ -12,6 +13,7 @@ import br.com.ufpb.aps.logbook.controlador.GerenciadorTurma;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorUsuario;
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.Pergunta;
 import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Professor;
 import br.com.ufpb.aps.logbook.entidade.Resposta;
@@ -28,6 +30,7 @@ public class LogbookFachada {
 	GerenciadorTurma gturma = new GerenciadorTurma();
 	GerenciadorUsuario gusuario = new GerenciadorUsuario();
 	GerenciadorResposta gresposta = new GerenciadorResposta();
+	GerenciadorPergunta gpergunta = new GerenciadorPergunta();
 
 	// Datos do Aluno
 	public void adicionarAluno(Aluno aluno) {
@@ -55,6 +58,10 @@ public class LogbookFachada {
 		gdisciplina.adicionarDisciplina(disciplina);
 	}
 
+	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
+		return gdisciplina.pesquisarDisciplina(codigoDisciplina);
+	}
+
 	public Disciplina editarDisciplina(Disciplina disciplina) {
 		return gdisciplina.editarDisciplina(disciplina);
 	}
@@ -63,20 +70,37 @@ public class LogbookFachada {
 		gdisciplina.deletarDisciplina(codigoDisciplina);
 	}
 
-	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
-		return gdisciplina.pesquisarDisciplina(codigoDisciplina);
+	public List<Disciplina> listaDisciplinas() {
+		return gdisciplina.getListaDisciplinas();
 	}
-
+	
 	public List<Disciplina> getListaDisciplinas() {
 		return gdisciplina.getListaDisciplinas();
 	}
-
 	// TODO: Dados do LogBook
-	
-	// TODO: Dados da Pergunta
+
+	// Dados da Pergunta
+	public void adicionarPergunta(Pergunta novaPergunta) {
+		gpergunta.adicionarPergunta(novaPergunta);
+	}
+
+	public Pergunta editarPergunta(Pergunta pergunta) {
+		return gpergunta.editarPergunta(pergunta);
+	}
+
+	public Pergunta pesquisarPergunta(String pergunta) {
+		return gpergunta.pesquisarPergunta(pergunta);
+	}
+
+	public void deletarPergunta(String codPergunta) {
+		gpergunta.deletarPergunta(codPergunta);
+	}
+
+	public List<Pergunta> getListPerguntas() {
+		return gpergunta.getListPerguntas();
+	}
 
 	// Dados da Prática
-
 	public void adicionarPratica(Pratica pratica) {
 		gpratica.adicionarPraticaProfessor(pratica);
 	}
@@ -118,27 +142,27 @@ public class LogbookFachada {
 		return gprofessor.listaTodosProfessores();
 	}
 
-	//Dados da Resposta
+	// Dados da Resposta
 	public void adicionarRespota(Resposta novaResposta) {
 		gresposta.adicionarRespota(novaResposta);
 	}
-	
+
 	public Resposta editarResposta(Resposta resposta) {
 		return gresposta.editarResposta(resposta);
 	}
-	
+
 	public Resposta pesquisarResposta(String codResposta) {
 		return gresposta.pesquisarResposta(codResposta);
 	}
-	
+
 	public void deletarRespota(String codResposta) {
 		gresposta.deletarRespota(codResposta);
 	}
-	
+
 	public List<Resposta> listaRespostas() {
 		return gresposta.getListaRespostas();
 	}
-	
+
 	// Dados da Turma
 	public void adicionarTurma(Turma novaTurma) {
 		gturma.adicionarTurma(novaTurma);

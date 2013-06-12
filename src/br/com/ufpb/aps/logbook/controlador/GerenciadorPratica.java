@@ -31,12 +31,12 @@ public class GerenciadorPratica {
 				"Não existe este aluno com esta matricula no Sitema LogBook");
 	}
 
-	public Pratica pesquisarPratica(String pratica) {
-		for (Pratica d : listaPraticas) {
-			if (d.getNumeroPratica().equalsIgnoreCase(pratica)) {
-				return d;
+	public Pratica pesquisarPratica(String numPratica) {
+		
+		for (Pratica p : listaPraticas) {
+			if (p.getNumeroPratica().equalsIgnoreCase(numPratica)) {
+				return p;
 			}
-
 		}
 		throw new Excecao(
 				"Não existe este aluno com esta prática no Sitema LogBook");

@@ -41,9 +41,7 @@ public class GerenciadorAluno {
 	}
 
 	public void deletarAluno(String matricula) {
-
 		for (Aluno b : listaTodosAlunos) {		
-
 			if (b.getMatricula().equalsIgnoreCase(matricula)) {
 				listaTodosAlunos.remove(b);				
 				return;

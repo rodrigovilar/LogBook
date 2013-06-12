@@ -20,9 +20,7 @@ public class Disciplina {
 		this.setProfessor(professor);
 	}
 	
-	public Disciplina(){
-		
-	}
+	public Disciplina(){}
 
 	public String getNomeDisciplina() {
 		return nomeDisciplina;
