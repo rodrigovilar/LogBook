@@ -110,9 +110,7 @@ public class LogBookTeste {
 		p1.setEmail("francisco@dce.ufpb.br");
 		p1.setLogin("franciscop");
 		p1.setSenha("54321");
-
 		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
-		
 		// CREATE ENTIDADE
 		fachada.adicionarProfessor(p1);
 		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
