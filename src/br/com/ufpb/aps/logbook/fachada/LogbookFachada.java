@@ -13,6 +13,7 @@ import br.com.ufpb.aps.logbook.controlador.GerenciadorTurma;
 import br.com.ufpb.aps.logbook.controlador.GerenciadorUsuario;
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.LogBook;
 import br.com.ufpb.aps.logbook.entidade.Pergunta;
 import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Professor;
@@ -73,11 +74,15 @@ public class LogbookFachada {
 	public List<Disciplina> listaDisciplinas() {
 		return gdisciplina.getListaDisciplinas();
 	}
-	
-	public List<Disciplina> getListaDisciplinas() {
-		return gdisciplina.getListaDisciplinas();
+
+	//Dados do LogBook
+	public LogBook editarLogBook(LogBook logbook) {
+		return glogbook.editarLogBook(logbook);
 	}
-	// TODO: Dados do LogBook
+	
+	public List<LogBook> listaLogBooks() {
+		return glogbook.listaLogBooks();
+	}
 
 	// Dados da Pergunta
 	public void adicionarPergunta(Pergunta novaPergunta) {
@@ -96,7 +101,7 @@ public class LogbookFachada {
 		gpergunta.deletarPergunta(codPergunta);
 	}
 
-	public List<Pergunta> getListPerguntas() {
+	public List<Pergunta> listPerguntas() {
 		return gpergunta.getListPerguntas();
 	}
 
@@ -117,7 +122,7 @@ public class LogbookFachada {
 		return gpratica.pesquisarPratica(numeroPratica);
 	}
 
-	public List<Pratica> getListaPraticas() {
+	public List<Pratica> listaPraticas() {
 		return gpratica.getPraticas();
 	}
 
@@ -180,7 +185,7 @@ public class LogbookFachada {
 		return gturma.pesquisarTurma(codigoTurma);
 	}
 
-	public List<Turma> getListaTurmas() {
+	public List<Turma> listaTurmas() {
 		return gturma.getListaTurmas();
 	}
 
@@ -193,12 +198,15 @@ public class LogbookFachada {
 		gusuario.deletarUsuario(usuario);
 	}
 
-	public Usuario pesquisarUsuario(String codigo, String matricula) {
-		return gusuario.pesquisarUsuario(codigo, matricula);
+	public Usuario pesquisarUsuario(String email) {
+		return gusuario.pesquisarUsuario(email);
 	}
 
-	public List<Usuario> getListaTodosUsuarios() {
+	public List<Usuario> listaTodosUsuarios() {
 		return gusuario.getListaTodosUsuarios();
 	}
-
+	
+	public Usuario editarUsuario(Usuario usuario){
+		return gusuario.editarUsuario(usuario);
+	}
 }

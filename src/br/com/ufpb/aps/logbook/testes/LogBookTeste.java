@@ -1,20 +1,19 @@
 package br.com.ufpb.aps.logbook.testes;
 
-import java.util.ArrayList;
-import java.util.List;
+import junit.framework.Assert;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.LogBook;
 import br.com.ufpb.aps.logbook.entidade.Pergunta;
 import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Professor;
 import br.com.ufpb.aps.logbook.entidade.Resposta;
 import br.com.ufpb.aps.logbook.entidade.Turma;
+import br.com.ufpb.aps.logbook.entidade.Usuario;
 import br.com.ufpb.aps.logbook.fachada.LogbookFachada;
 
 public class LogBookTeste {
@@ -74,7 +73,7 @@ public class LogBookTeste {
 		Assert.assertEquals(d1, fachada.pesquisarDisciplina("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarDisciplina("001");
-		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		//Assert.assertTrue(fachada.listaDisciplinas().isEmpty());
 
 	}
 
@@ -83,15 +82,15 @@ public class LogBookTeste {
 		
 		Pratica p1 = new Pratica();
 		p1.setNumeroPratica("001");
-		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
+		Assert.assertTrue(fachada.listaPraticas().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarPratica(p1);
-		Assert.assertFalse(fachada.getListaPraticas().isEmpty());
+		Assert.assertFalse(fachada.listaPraticas().isEmpty());
 		Assert.assertEquals(p1, fachada.pesquisarPratica("001"));
 		// UPDATE ENTIDADE
 		p1.setNumeroPratica("001");
 		fachada.editarPratica(p1);
-		Assert.assertFalse(fachada.getListaPraticas().isEmpty());
+		Assert.assertFalse(fachada.listaPraticas().isEmpty());
 		Assert.assertEquals("001", fachada.pesquisarPratica("001").getNumeroPratica());
 		// GET ENTIDADE
 		Assert.assertEquals(p1, fachada.pesquisarPratica("001"));
@@ -137,15 +136,15 @@ public class LogBookTeste {
 		Turma t1 = new Turma();
 		t1.setCodigo("001");
 
-		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
+		Assert.assertTrue(fachada.listaTurmas().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
+		Assert.assertFalse(fachada.listaTurmas().isEmpty());
 		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
 		// UPDATE ENTIDADE
 		t1.setCodigo("001");
 		fachada.editarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
+		Assert.assertFalse(fachada.listaTurmas().isEmpty());
 		Assert.assertEquals("001", fachada.pesquisarTurma("001").getCodigo());
 		// GET ENTIDADE
 		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
@@ -161,22 +160,21 @@ public class LogBookTeste {
 		Pergunta p1 = new Pergunta();
 		p1.setCodPergunta("001");
 		p1.setPergunta("O que você entendeu da aula de hoje?");
-		p1.setResposta("Entendi todo o assunto");
-		Assert.assertTrue(fachada.getListPerguntas().isEmpty());
+		Assert.assertTrue(fachada.listPerguntas().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarPergunta(p1);
-		Assert.assertFalse(fachada.getListPerguntas().isEmpty());
+		Assert.assertFalse(fachada.listPerguntas().isEmpty());
 		Assert.assertEquals(p1, fachada.pesquisarPergunta("001"));
 		// UPDATE ENTIDADE
 		p1.setCodPergunta("001");
 		fachada.editarPergunta(p1);
-		Assert.assertFalse(fachada.getListPerguntas().isEmpty());
+		Assert.assertFalse(fachada.listPerguntas().isEmpty());
 		Assert.assertEquals("001", fachada.pesquisarPergunta("001").getCodPergunta());
 		// GET ENTIDADE
 		Assert.assertEquals(p1, fachada.pesquisarPergunta("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarPergunta("001");
-		//Assert.assertTrue(fachada.getListPerguntas().isEmpty());
+		//Assert.assertTrue(fachada.listPerguntas().isEmpty());
 
 	}
 	
@@ -186,35 +184,57 @@ public class LogBookTeste {
 		Resposta r1 = new Resposta();
 		r1.setConteudo("Entendi todo o assunto");
 		r1.setCodResposta("001");
+		Assert.assertTrue(fachada.listaRespostas().isEmpty());
+		//CREATE ENTIDADE
+		fachada.adicionarRespota(r1);
+		Assert.assertFalse(fachada.listaRespostas().isEmpty());
+		Assert.assertEquals(r1, fachada.pesquisarResposta("001"));
+		// UPDATE ENTIDADE
+		r1.setCodResposta("001");
+		fachada.editarResposta(r1);
+		Assert.assertFalse(fachada.listaRespostas().isEmpty());
+		Assert.assertEquals("001", fachada.pesquisarResposta("001").getCodResposta());
+		// GET ENTIDADE
+		Assert.assertEquals(r1, fachada.pesquisarResposta("001"));
+		// REMOVE ENTIDADE
+		fachada.deletarRespota("001");
+		//Assert.assertTrue(fachada.listaRespostas().isEmpty());
+	}
+	
+	@Test
+	public void testCrudUsuário() {
 		
+		Usuario u1 = new Usuario();
+		u1.setNome("José");
+		u1.setSobrenome("Maria");
+		u1.setEmail("jose.maria@dce.ufpb.br");
+		u1.setLogin("josemariajm");
+		u1.setSenha("1234");
+		Assert.assertTrue(fachada.listaTodosUsuarios().isEmpty());
+		//CREATE ENTIDADE
+		fachada.adicionarUsuario(u1);
+		Assert.assertFalse(fachada.listaTodosUsuarios().isEmpty());
+		Assert.assertEquals(u1, fachada.pesquisarUsuario("jose.maria@dce.ufpb.br"));
+		// UPDATE ENTIDADE
+		u1.setEmail("jose.maria@dce.ufpb.br");
+		fachada.editarUsuario(u1);
+		Assert.assertFalse(fachada.listaTodosUsuarios().isEmpty());
+		Assert.assertEquals("jose.maria@dce.ufpb.br", fachada.pesquisarUsuario("jose.maria@dce.ufpb.br").getEmail());
+		// GET ENTIDADE
+		Assert.assertEquals(u1, fachada.pesquisarUsuario("jose.maria@dce.ufpb.br"));
+		// REMOVE ENTIDADE
+		fachada.deletarUsuario(u1);
+		Assert.assertTrue(fachada.listaTodosUsuarios().isEmpty());
+	}
+	
+	@Test
+	public void testCrudLogBook() {
+		
+		LogBook lb1 = new LogBook();
+		lb1.setAssunto("Liguagem de Programação");
+		lb1.setData("12/06/2013");
+		lb1.setHora("06:30");
+		Assert.assertTrue(fachada.listaLogBooks().isEmpty());
 		
 	}
-
-	// inserir Aluno - OK
-	// inserir Professor - OK
-	// inserir Disciplina - OK
-	// inserir Turma - OK
-	// Verificar se existe Aluno - OK
-	// Verificar se existe Professor - OK
-	// Verificar se existe Disciplina - OK
-	// Verificar se existe Turma - OK
-	// Verificar se Turma tem Disciplina, Professor e Aluno
-	// Verificar se Aluno tem Turma Disciplina e Professor
-	// Verificar se Professor tem Aluno, Disciplina e Turma
-	// Verificar se Disciplina tem Aluno, Turma, Professor
-	// Verificar se Aluno consegue escrever no LogBook (Responder a Pergunta: -
-	// O que aprendi hoje na aula? / - Quais sï¿½o minhas dï¿½vidas nessa aula?)
-	// Verificar se Professor consegue escrever a Prï¿½tica
-	// Verificar se Aluno consegue editar Perfil
-	// Verificar se Professor consegue editar Perfil
-	// Verificar se Professor consegue vizualizar o que o aluno escreveu no
-	// Logbook
-	// Verificar se Professor consegue corigir as Prï¿½ticas
-	// Verificar se Professor consegue Adicionar Aluno
-	// Verificar se Professor consegue Deletar Aluno
-	// Verificar se Professor consegue Criar Turma
-	// Verificar se Professor consegue criar Disciplina
-	// Verificar se Professor consegue Deletar Turma
-	// VErificar se Professor consegue Deletar Disciplina
-	//
 }

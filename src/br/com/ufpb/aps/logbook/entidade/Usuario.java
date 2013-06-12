@@ -2,9 +2,11 @@ package br.com.ufpb.aps.logbook.entidade;
 
 public class Usuario {
 
+	//O email é a chave primaria
+	private String email;
+	
 	private String nome;
 	private String sobrenome;
-	private String email;
 	private String senha;
 	private String login;
 
@@ -17,9 +19,7 @@ public class Usuario {
 		this.login = login;
 	}
 
-	public Usuario() {
-
-	}
+	public Usuario() {}
 
 	public String getNome() {
 		return nome;

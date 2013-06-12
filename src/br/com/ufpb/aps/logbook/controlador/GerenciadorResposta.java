@@ -47,10 +47,6 @@ public class GerenciadorResposta {
 		}
 	} 
 	
-	public List<Resposta> listaResposta() {
-		return listaRespostas;
-	}
-	
 	public List<Resposta> getListaRespostas() {
 		return listaRespostas;
 	}

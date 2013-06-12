@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Aluno;
+import br.com.ufpb.aps.logbook.entidade.Disciplina;
 import br.com.ufpb.aps.logbook.entidade.Professor;
+import br.com.ufpb.aps.logbook.entidade.Resposta;
 import br.com.ufpb.aps.logbook.entidade.Usuario;
+import br.com.ufpb.aps.logbook.excecao.Excecao;
 
 public class GerenciadorUsuario {
 
@@ -16,17 +19,34 @@ public class GerenciadorUsuario {
 	}
 
 	public void deletarUsuario(Usuario usuario) {
-		listaTodosUsuarios.remove(usuario);
+			for (Usuario u : listaTodosUsuarios) {		
+				if (u.getEmail().equals(u.getEmail())) {
+					listaTodosUsuarios.remove(u);				
+					return;
+				}
+			}
 	}
 
-	// Pegar os métodos de pesquisaAluno e pesquisaProfessor que estão dentro de
-	// seus respectivos gerenciadores e verificar se o código ou a matrícula
-	// passado está correto para comparar e poder deletar
-	public Usuario pesquisarUsuario(String codigo, String matricula){
+	public Usuario pesquisarUsuario(String email){
+		Usuario usuario = new Usuario();
 		for (Usuario u : listaTodosUsuarios){
-			
+			if(u.getEmail().equalsIgnoreCase(email)){
+				usuario = u;
+			}
+			return usuario;
 		}
-		return null;
+		throw new Excecao("Não existe usuario com este email no Sitema LogBook");
+	}
+
+	public Usuario editarUsuario(Usuario usuario) {
+		for(Usuario u: listaTodosUsuarios){
+			if(usuario.getEmail().equals(u.getEmail())){
+				u = usuario;
+				listaTodosUsuarios.add(u);
+				return u;
+			}
+		}
+		throw new Excecao("Não existe usuário com este e-mail no sistema LogBook");
 	}
 
 	public List<Usuario> getListaTodosUsuarios() {

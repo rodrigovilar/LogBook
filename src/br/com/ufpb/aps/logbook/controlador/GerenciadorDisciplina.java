@@ -27,8 +27,7 @@ public class GerenciadorDisciplina {
 				return d;
 			}
 		}
-		throw new Excecao(
-				"Não existe está Disciplina com este código no sistema LogBook");
+		throw new Excecao("Não existe está Disciplina com este código no sistema LogBook");
 	}
 	
 	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
