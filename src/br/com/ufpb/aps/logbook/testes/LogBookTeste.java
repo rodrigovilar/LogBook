@@ -22,12 +22,12 @@ public class LogBookTeste {
 
 	@Before
 	public void criarFacadeLogbook() {
-		fachada = new LogbookFachada(); 
+		fachada = new LogbookFachada();
 	}
 
 	@Test
 	public void testCrudAluno() {
-		
+
 		Aluno a1 = new Aluno();
 		a1.setNome("Luiz Fernando");
 		a1.setSobrenome("Paiva");
@@ -35,7 +35,7 @@ public class LogBookTeste {
 		a1.setEmail("fernando.paiva@dce.ufpb.br");
 		a1.setLogin("fernandopaiva");
 		a1.setSenha("12345");
-		
+
 		Assert.assertTrue(fachada.listaTodosAlunos().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarAluno(a1);
@@ -45,49 +45,23 @@ public class LogBookTeste {
 		a1.setNome("josé");
 		fachada.EditarDadosAluno(a1);
 		Assert.assertFalse(fachada.listaTodosAlunos().isEmpty());
-		Assert.assertEquals("josé", fachada.pesquisarAluno("80911008").getNome());
+		Assert.assertEquals("josé", fachada.pesquisarAluno("80911008")
+				.getNome());
 		// GET ENTIDADE
 		Assert.assertEquals(a1, fachada.pesquisarAluno("80911008"));
 		// REMOVE ENTIDADE
 		fachada.deletarAluno("80911008");
 		Assert.assertTrue(fachada.listaTodosAlunos().isEmpty());
-	}
-
-	@Test
-	public void testCrudProfessor() {
 		
-		Professor p1 = new Professor();
-		p1.setNome("Francisco");
-		p1.setSobrenome("Pinto");
-		p1.setCodigo("60");
-		p1.setEmail("francisco@dce.ufpb.br");
-		p1.setLogin("franciscop");
-		p1.setSenha("54321");
-		
-		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
-		// CREATE ENTIDADE
-		fachada.adicionarProfessor(p1);
-		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
-		Assert.assertEquals(p1, fachada.pesquisarProfessor("60"));
-		// UPDATE ENTIDADE
-		p1.setNome("joãozinho");
-		fachada.editarProfessor(p1);
-		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
-		Assert.assertEquals("joãozinho", fachada.pesquisarProfessor("60").getNome());
-		// GET ENTIDADE
-		Assert.assertEquals(p1, fachada.pesquisarProfessor("60"));
-		// REMOVE ENTIDADE
-		fachada.deletarProfessor("60");
-		//Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
 	}
 
 	@Test
 	public void testCrudDisciplina() {
-		
+
 		Disciplina d1 = new Disciplina();
 		d1.setNomeDisciplina("Português");
 		d1.setCodigoDisciplina("001");
-	
+
 		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarDisciplina(d1);
@@ -103,34 +77,13 @@ public class LogBookTeste {
 		Assert.assertEquals(d1, fachada.pesquisarDisciplina("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarDisciplina("001");
-		//Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
-	}
-
-	@Test
-	public void testCrudTurma() {
+		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
 		
-		Turma t1 = new Turma();
-		t1.setCodigo("001");
-		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
-		// CREATE ENTIDADE
-		fachada.adicionarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
-		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
-		// UPDATE ENTIDADE
-		t1.setCodigo("001");
-		fachada.editarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
-		Assert.assertEquals("001", fachada.pesquisarTurma("001").getCodigo());
-		// GET ENTIDADE
-		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
-		// REMOVE ENTIDADE
-		fachada.deletarTurma("001");
-		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
 	}
 
 	@Test
 	public void testCrudPratica() {
-		
+
 		Pergunta pergunta = new Pergunta();
 		List<Pergunta> listaPerguntas = new ArrayList<Pergunta>();
 		listaPerguntas.add(pergunta);
@@ -147,14 +100,71 @@ public class LogBookTeste {
 		p1.setNumeroPratica("001");
 		fachada.editarPratica(p1);
 		Assert.assertFalse(fachada.getListaPraticas().isEmpty());
-		Assert.assertEquals("001", fachada.pesquisarPratica("001").getNumeroPratica());
+		Assert.assertEquals("001", fachada.pesquisarPratica("001")
+				.getNumeroPratica());
 		// GET ENTIDADE
 		Assert.assertEquals(p1, fachada.pesquisarPratica("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarPratica("001");
 		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
+		
+	}
+
+	@Test
+	public void testCrudProfessor() {
+
+		Professor p1 = new Professor();
+		p1.setNome("Francisco");
+		p1.setSobrenome("Pinto");
+		p1.setCodigo("60");
+		p1.setEmail("francisco@dce.ufpb.br");
+		p1.setLogin("franciscop");
+		p1.setSenha("54321");
+
+		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
+		// CREATE ENTIDADE
+		fachada.adicionarProfessor(p1);
+		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
+		Assert.assertEquals(p1, fachada.pesquisarProfessor("60"));
+		// UPDATE ENTIDADE
+		p1.setNome("joãozinho");
+		fachada.editarProfessor(p1);
+		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
+		Assert.assertEquals("joãozinho", fachada.pesquisarProfessor("60")
+				.getNome());
+		// GET ENTIDADE
+		Assert.assertEquals(p1, fachada.pesquisarProfessor("60"));
+		// REMOVE ENTIDADE
+		fachada.deletarProfessor("60");
+		// Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
+		
+	}
+
+	@Test
+	public void testCrudTurma() {
+
+		Turma t1 = new Turma();
+		t1.setCodigo("001");
+
+		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
+		// CREATE ENTIDADE
+		fachada.adicionarTurma(t1);
+		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
+		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		// UPDATE ENTIDADE
+		t1.setCodigo("001");
+		fachada.editarTurma(t1);
+		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
+		Assert.assertEquals("001", fachada.pesquisarTurma("001").getCodigo());
+		// GET ENTIDADE
+		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		// REMOVE ENTIDADE
+		fachada.deletarTurma("001");
+		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+
 	}
 	
+
 	// inserir Aluno - OK
 	// inserir Professor - OK
 	// inserir Disciplina - OK

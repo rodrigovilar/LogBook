@@ -47,6 +47,53 @@ public class LogbookFachada {
 		return galuno.getListaTodosAlunos();
 	}
 
+	// Dados da Disciplina
+	public void adicionarDisciplina(Disciplina disciplina) {
+		gdisciplina.adicionarDisciplina(disciplina);
+	}
+
+	public Disciplina editarDisciplina(Disciplina disciplina) {
+		return gdisciplina.editarDisciplina(disciplina);
+	}
+
+	public void deletarDisciplina(String codigoDisciplina) {
+		gdisciplina.deletarDisciplina(codigoDisciplina);
+	}
+
+	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
+		return gdisciplina.pesquisarDisciplina(codigoDisciplina);
+	}
+
+	public List<Disciplina> getListaDisciplinas() {
+		return gdisciplina.getListaDisciplinas();
+	}
+
+	// TODO: Dados do LogBook
+	
+	// TODO: Dados da Pergunta
+
+	// Dados da Prática
+
+	public void adicionarPratica(Pratica pratica) {
+		gpratica.adicionarPraticaProfessor(pratica);
+	}
+
+	public Pratica editarPratica(Pratica pratica) {
+		return gpratica.editarPratica(pratica);
+	}
+
+	public void deletarPratica(String numeroPratica) {
+		gpratica.deletarPratica(numeroPratica);
+	}
+
+	public Pratica pesquisarPratica(String numeroPratica) {
+		return gpratica.pesquisarPratica(numeroPratica);
+	}
+
+	public List<Pratica> getListaPraticas() {
+		return gpratica.getPraticas();
+	}
+
 	// Dados do Professor
 	public void adicionarProfessor(Professor professor) {
 		gprofessor.adicionarProfessor(professor);
@@ -68,22 +115,7 @@ public class LogbookFachada {
 		return gprofessor.listaTodosProfessores();
 	}
 
-	// Dados do Usuário
-	public void adicionarUsuario(Usuario novoUsuario) {
-		gusuario.adicionarUsuario(novoUsuario);
-	}
-
-	public void deletarUsuario(Usuario usuario) {
-		gusuario.deletarUsuario(usuario);
-	}
-
-	public Usuario pesquisarUsuario(String codigo, String matricula) {
-		return gusuario.pesquisarUsuario(codigo, matricula);
-	}
-
-	public List<Usuario> getListaTodosUsuarios() {
-		return gusuario.getListaTodosUsuarios();
-	}
+	// TODO: Dados da Resposta
 
 	// Dados da Turma
 	public void adicionarTurma(Turma novaTurma) {
@@ -106,48 +138,21 @@ public class LogbookFachada {
 		return gturma.getListaTurmas();
 	}
 
-	// Dados da Disciplina
-	public void adicionarDisciplina(Disciplina disciplina){
-		gdisciplina.adicionarDisciplina(disciplina);
+	// Dados do Usuário
+	public void adicionarUsuario(Usuario novoUsuario) {
+		gusuario.adicionarUsuario(novoUsuario);
 	}
-	
-	public Disciplina editarDisciplina(Disciplina disciplina) {
-		return gdisciplina.editarDisciplina(disciplina);
+
+	public void deletarUsuario(Usuario usuario) {
+		gusuario.deletarUsuario(usuario);
 	}
-	
-	public void deletarDisciplina(String codigoDisciplina){
-		gdisciplina.deletarDisciplina(codigoDisciplina);
+
+	public Usuario pesquisarUsuario(String codigo, String matricula) {
+		return gusuario.pesquisarUsuario(codigo, matricula);
 	}
-	
-	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
-		return gdisciplina.pesquisarDisciplina(codigoDisciplina);
+
+	public List<Usuario> getListaTodosUsuarios() {
+		return gusuario.getListaTodosUsuarios();
 	}
-	
-	public List<Disciplina> getListaDisciplinas() {
-		return gdisciplina.getListaDisciplinas();
-	}
-	
-	// Dados da Prática
-	public void adicionarPratica (Pratica pratica){
-		gpratica.adicionarPraticaProfessor(pratica);
-	}
-	
-	public Pratica editarPratica (Pratica pratica){
-		return null;// gpratica.editarPratica(pratica);
-	}
-	
-	public void deletarPratica (String numeroPratica){
-		gpratica.deletarPratica(numeroPratica);
-	}
-	
-	public Pratica pesquisarPratica (String numeroPratica){
-		return gpratica.pesquisarPratica(numeroPratica);
-	}
-	
-	public List<Pratica> getListaPraticas(){
-		return gpratica.getPraticas();
-	}
-	
-	// Dados do LogBook
-	
+
 }

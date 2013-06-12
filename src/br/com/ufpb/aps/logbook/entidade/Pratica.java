@@ -4,24 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pratica {
-	
-	
+
 	private String numeroPratica;
 	private Disciplina disciplina;
-	
-	private List<Pergunta> listaPerguntas = new ArrayList<Pergunta>();	
-	
-	public Pratica (List<Pergunta> perguntas, Disciplina disciplina){
+
+	private List<Pergunta> listaPerguntas = new ArrayList<Pergunta>();
+
+	public Pratica(List<Pergunta> perguntas, Disciplina disciplina) {
 		this.setPergunta(perguntas);
 		this.setDisciplina(disciplina);
 	}
-	
-	public Pratica(){
-		
+
+	public Pratica() {
+
 	}
-	
-	
-	
+
 	public String getNumeroPratica() {
 		return numeroPratica;
 	}
@@ -45,7 +42,7 @@ public class Pratica {
 	public void setPergunta(List<Pergunta> pergunta) {
 		this.listaPerguntas = pergunta;
 	}
-	
+
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}

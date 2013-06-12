@@ -20,11 +20,11 @@ public class GerenciadorPratica {
 
 	public Pratica editarPratica(Pratica pratica) {
 
-		for (Pratica d : listaPraticas) {
-			if (d.getNumeroPratica().equals(pratica.getNumeroPratica())) {
-				d = pratica;
-				listaPraticas.add(d);
-				return d;
+		for (Pratica p : listaPraticas) {
+			if (p.getNumeroPratica().equals(pratica.getNumeroPratica())) {
+				p = pratica;
+				listaPraticas.add(p);
+				return p;
 			}
 		}
 		throw new Excecao(
@@ -39,7 +39,7 @@ public class GerenciadorPratica {
 
 		}
 		throw new Excecao(
-				"Não existe este aluno com esta matricula no Sitema LogBook");
+				"Não existe este aluno com esta prática no Sitema LogBook");
 	}
 
 	public void deletarPratica(String numeroPratica) {
@@ -51,7 +51,7 @@ public class GerenciadorPratica {
 
 		}
 		throw new Excecao(
-				"Não existe este aluno com esta matricula no Sitema LogBook");
+				"Não existe este aluno com esta prática no Sitema LogBook");
 	}
 
 	public List<Pratica> getPraticas() {

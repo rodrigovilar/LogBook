@@ -1,15 +1,15 @@
 package br.com.ufpb.aps.logbook.entidade;
 
 public class Resposta {
-	
+
 	private String conteudo;
-	
-	public Resposta (String conteudo){
+
+	public Resposta(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	
-	public Resposta(){
-		
+
+	public Resposta() {
+
 	}
 
 	public String getConteudo() {
@@ -19,5 +19,4 @@ public class Resposta {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	
 }
