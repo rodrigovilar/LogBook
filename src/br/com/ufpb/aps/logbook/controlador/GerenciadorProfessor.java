@@ -1,18 +1,16 @@
 package br.com.ufpb.aps.logbook.controlador;
 
-import br.com.ufpb.aps.logbook.entidade.Aluno;
-import br.com.ufpb.aps.logbook.entidade.Disciplina;
-import br.com.ufpb.aps.logbook.entidade.Professor;
-import br.com.ufpb.aps.logbook.entidade.Turma;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ufpb.aps.logbook.entidade.Professor;
+import br.com.ufpb.aps.logbook.excecao.Excecao;
+
 public class GerenciadorProfessor {
 
-	private List<Aluno> listaAlunos = new ArrayList<Aluno>();
-	private List<Disciplina> listaDisciplina = new ArrayList<Disciplina>();
+	//private List<Aluno> listaAlunos = new ArrayList<Aluno>();
+	//private List<Disciplina> listaDisciplina = new ArrayList<Disciplina>();
+	
 	private List<Professor> listaProfessores = new ArrayList<Professor>();
 
 	public void adicionarProfessor(Professor professor) {
@@ -56,4 +54,5 @@ public class GerenciadorProfessor {
 			}
 		}
 	}
+	
 }
