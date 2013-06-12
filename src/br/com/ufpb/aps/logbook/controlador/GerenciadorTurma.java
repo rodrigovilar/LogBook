@@ -44,7 +44,13 @@ public class GerenciadorTurma {
 	}
 
 	public void deletarTurma(String codigoTurma) {
-		listaTurmas.remove(codigoTurma);
+		for( Turma t : this.listaTurmas ){
+			if (t.getCodigo() == codigoTurma) {
+				this.listaTurmas.remove(t);
+			}
+		}
+				
+		//listaTurmas.remove(codigoTurma);
 	}
 
 	public List<Turma> getListaTurmas() {

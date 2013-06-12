@@ -30,7 +30,10 @@ public class GerenciadorAluno extends Exception {
 			if (aluno.getMatricula().equals(a.getMatricula())) {
 				a.setEmail(aluno.getEmail());
 				a.setLogin(aluno.getLogin());
-//TODO				
+				a.setNome(aluno.getNome());
+				a.setSobrenome(aluno.getSobrenome());
+				a.setSenha(aluno.getSenha());
+				a.setMatricula(aluno.getMatricula());
 				return a;
 			}
 		}

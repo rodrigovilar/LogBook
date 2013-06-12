@@ -3,6 +3,8 @@ package br.com.ufpb.aps.logbook.entidade;
 public class Professor extends Usuario {
 
 	private String codigo;
+	
+	
 
 	public Professor(String nome, String sobrenome, String email, String senha,
 			String login, String codigo) {

@@ -6,12 +6,11 @@ public class Turma {
 
 	private String codigoTurma;
 	private List<Aluno> alunos;
-	private List<Professor> professores;
+	private Professor professore;
 	private List<Disciplina> disciplinas;
 
-	public Turma(String codigo, List<Aluno> alunos,
-			List<Professor> professores, List<Disciplina> disciplinas) {
-		this.professores = professores;
+	public Turma(String codigo, List<Aluno> alunos,	Professor professores, List<Disciplina> disciplinas) {
+		this.professore = professores;
 		this.disciplinas = disciplinas;
 		this.codigoTurma = codigo;
 		this.alunos = alunos;
@@ -37,12 +36,12 @@ public class Turma {
 		this.alunos = alunos;
 	}
 
-	public List<Professor> getProfessores() {
-		return professores;
+	public Professor getProfessores() {
+		return professore;
 	}
 
-	public void setProfessores(List<Professor> professores) {
-		this.professores = professores;
+	public void setProfessores(Professor professore) {
+		this.professore = professore;
 	}
 
 	public List<Disciplina> getDisciplinas() {

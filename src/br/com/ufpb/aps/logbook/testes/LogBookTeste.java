@@ -16,7 +16,7 @@ import br.com.ufpb.aps.logbook.fachada.LogbookFachada;
 
 public class LogBookTeste {
 
-	LogbookFachada fachada; // campo fachada que será usado por todos os testes
+	LogbookFachada fachada;
 
 	@Before
 	public void criarFacadeLogbook() {
@@ -43,8 +43,7 @@ public class LogBookTeste {
 		a1.setNome("josé");
 		fachada.EditarDadosAluno(a1);
 		Assert.assertFalse(fachada.listaTodosAlunos().isEmpty());
-		Assert.assertEquals("josé", fachada.pesquisarAluno("80911008")
-				.getNome());
+		Assert.assertEquals("josé", fachada.pesquisarAluno("80911008").getNome());
 		// GET ENTIDADE
 		Assert.assertEquals(a1, fachada.pesquisarAluno("80911008"));
 		// REMOVE ENTIDADE
@@ -72,24 +71,21 @@ public class LogBookTeste {
 		p1.setNome("joãozinho");
 		fachada.editarProfessor(p1);
 		Assert.assertFalse(fachada.listaTodosProfessores().isEmpty());
-		Assert.assertEquals("joãozinho", fachada.pesquisarProfessor("60")
-				.getNome());
+		Assert.assertEquals("joãozinho", fachada.pesquisarProfessor("60").getNome());
 		// GET ENTIDADE
 		Assert.assertEquals(p1, fachada.pesquisarProfessor("60"));
 		// REMOVE ENTIDADE
 		fachada.deletarProfessor("60");
-		// Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
+		//Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
 	}
 
 	@Test
 	public void testCrudDisciplina() {
 		
-		List<Turma> turma1 = new ArrayList<Turma>();
 		Disciplina d1 = new Disciplina();
 		d1.setNomeDisciplina("Português");
 		d1.setCodigoDisciplina("001");
-		d1.setTurmas(turma1);
-		
+	
 		Assert.assertTrue(fachada.listaTodosProfessores().isEmpty());
 		// CREATE ENTIDADE
 		fachada.adicionarDisciplina(d1);
@@ -105,13 +101,12 @@ public class LogBookTeste {
 		Assert.assertEquals(d1, fachada.pesquisarDisciplina("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarDisciplina("001");
-		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		//Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
 	}
 
 	@Test
 	public void testCrudTurma() {
 		
-		//List<Turma> turma1 = new ArrayList<Turma>();
 		Turma t1 = new Turma();
 		t1.setCodigo("001");
 		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
@@ -128,11 +123,18 @@ public class LogBookTeste {
 		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
 		// REMOVE ENTIDADE
 		fachada.deletarTurma("001");
-		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
 	}
 
+	@Test
+	public void testeCrudPratica(){
+		
+		
+		
+	}
 	@Ignore
 	public void testCrud() {
+		
 		List<Turma> turma1 = new ArrayList<Turma>();
 		Turma t1 = new Turma();
 		t1.setCodigo("001");
@@ -152,7 +154,7 @@ public class LogBookTeste {
 		fachada.deletarTurma("001");
 		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
 	}
-
+	
 	// inserir Aluno - OK
 	// inserir Professor - OK
 	// inserir Disciplina - OK

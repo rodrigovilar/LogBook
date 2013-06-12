@@ -47,7 +47,13 @@ public class GerenciadorDisciplina {
 	}
 
 	public void deletarDisciplina(String codigoDisciplina) {
-		listaDisciplinas.remove(codigoDisciplina);
+		Disciplina disciplina = new Disciplina();
+		disciplina = this.pesquisarDisciplina(codigoDisciplina);
+		
+		if (disciplina.getCodigoDisciplina() == codigoDisciplina){
+			this.listaDisciplinas.remove(disciplina);
+		}
+		//listaDisciplinas.remove(codigoDisciplina);
 	}
 
 	public List<Disciplina> getListaDisciplinas() {

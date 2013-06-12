@@ -1,20 +1,22 @@
 package br.com.ufpb.aps.logbook.entidade;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Disciplina {
 
 	private String nomeDisciplina;
 	private String codigoDisciplina;
+	private Pratica pratica;
+	private Professor professor;
 
-	private List<Turma> turmas = new ArrayList<Turma>();
+	private ArrayList<Turma> listaTurmas = new ArrayList<Turma>();
+	private ArrayList<Pratica> listaPraticas = new ArrayList<Pratica>();
 
-	public Disciplina(String nomeDisciplina, String codigoDisciplina,
-			Professor professor, List<Turma> turmas) {
+	public Disciplina(String nomeDisciplina, String codigoDisciplina, Pratica pratica, Professor professor) {
 		this.nomeDisciplina = nomeDisciplina;
 		this.codigoDisciplina = codigoDisciplina;
-		this.turmas = turmas;
+		this.pratica = pratica;
+		this.setProfessor(professor);
 	}
 	
 	public Disciplina(){
@@ -37,17 +39,49 @@ public class Disciplina {
 		this.codigoDisciplina = codigoDisciplina;
 	}
 
-	public List<Turma> getTurmas() {
-		return turmas;
-	}
-
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
-	}
-
 	public String toString() {
 		return "Disciplina: " + this.getNomeDisciplina()
 				+ "Código da Disciplina: " + this.getCodigoDisciplina()
-				+ "Turmas: " + this.getTurmas();
+				+ "Turmas: " + this.getListaTurmas();
+	}
+
+	public ArrayList<Pratica> getPraticas() {
+		return listaPraticas;
+	}
+
+	public void setPraticas(ArrayList<Pratica> praticas) {
+		this.listaPraticas = praticas;
+	}
+	
+	public ArrayList<Pratica> getListaPraticas() {
+		return listaPraticas;
+	}
+
+	public void setListaPraticas(ArrayList<Pratica> listaPraticas) {
+		this.listaPraticas = listaPraticas;
+	}
+	
+	public ArrayList<Turma> getListaTurmas() {
+		return listaTurmas;
+	}
+
+	public void setListaTurmas(ArrayList<Turma> listaTurmas) {
+		this.listaTurmas = listaTurmas;
+	}
+
+	public Pratica getPratica() {
+		return pratica;
+	}
+
+	public void setPratica(Pratica pratica) {
+		this.pratica = pratica;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 }
