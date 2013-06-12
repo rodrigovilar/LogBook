@@ -18,28 +18,44 @@ public class GerenciadorPratica {
 		listaPraticas.add(novaPratica);
 	}
 
-	public Disciplina editarPratica(Pratica pratica, Disciplina disciplina, Resposta resposta) {
+	public Pratica editarPratica(Pratica pratica) {
 
-		for (Disciplina d : listaDisciplinas) {
-			if (disciplina.getCodigoDisciplina().equals(d.getCodigoDisciplina())) {
-				
+		for (Pratica d : listaPraticas) {
+			if (d.getNumeroPratica().equals(pratica.getNumeroPratica())) {
+				d = pratica;
+				listaPraticas.add(d);
+				return d;
+			}
+		}
+		throw new Excecao(
+				"Não existe este aluno com esta matricula no Sitema LogBook");
+	}
+
+	public Pratica pesquisarPratica(String pratica) {
+		for (Pratica d : listaPraticas) {
+			if (d.getNumeroPratica().equalsIgnoreCase(pratica)) {
 				return d;
 			}
 
 		}
+		throw new Excecao(
+				"Não existe este aluno com esta matricula no Sitema LogBook");
 	}
 
-	public List<Pratica> pesquisarPratica(Aluno aluno) {
-		return getPraticas();
+	public void deletarPratica(String numeroPratica) {
+		for (Pratica d : listaPraticas) {
+			if (d.getNumeroPratica().equalsIgnoreCase(numeroPratica)) {
+				listaPraticas.remove(d);
+				return;
+			}
 
-	}
-
-	public void deletarPratica(int numeroPratica) {
-		listaPraticas.remove(numeroPratica);
+		}
+		throw new Excecao(
+				"Não existe este aluno com esta matricula no Sitema LogBook");
 	}
 
 	public List<Pratica> getPraticas() {
-		return getPraticas();
+		return listaPraticas;
 	}
 
 	public void setPraticas(List<Pratica> praticas) {
@@ -47,10 +63,10 @@ public class GerenciadorPratica {
 	}
 
 	public List<Disciplina> getListaDisciplina() {
-		return listaDisciplina;
+		return listaDisciplinas;
 	}
 
 	public void setListaDisciplina(List<Disciplina> listaDisciplina) {
-		this.listaDisciplina = listaDisciplina;
+		this.listaDisciplinas = listaDisciplina;
 	}
 }

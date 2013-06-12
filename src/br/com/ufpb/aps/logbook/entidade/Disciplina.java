@@ -1,6 +1,7 @@
 package br.com.ufpb.aps.logbook.entidade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Disciplina {
 
@@ -9,8 +10,8 @@ public class Disciplina {
 	private Pratica pratica;
 	private Professor professor;
 
-	private ArrayList<Turma> listaTurmas = new ArrayList<Turma>();
-	private ArrayList<Pratica> listaPraticas = new ArrayList<Pratica>();
+	private List<Turma> listaTurmas = new ArrayList<Turma>();
+	private List<Pratica> listaPraticas = new ArrayList<Pratica>();
 
 	public Disciplina(String nomeDisciplina, String codigoDisciplina, Pratica pratica, Professor professor) {
 		this.nomeDisciplina = nomeDisciplina;
@@ -45,27 +46,27 @@ public class Disciplina {
 				+ "Turmas: " + this.getListaTurmas();
 	}
 
-	public ArrayList<Pratica> getPraticas() {
+	public List<Pratica> getPraticas() {
 		return listaPraticas;
 	}
 
-	public void setPraticas(ArrayList<Pratica> praticas) {
+	public void setPraticas(List<Pratica> praticas) {
 		this.listaPraticas = praticas;
 	}
 	
-	public ArrayList<Pratica> getListaPraticas() {
+	public List<Pratica> getListaPraticas() {
 		return listaPraticas;
 	}
 
-	public void setListaPraticas(ArrayList<Pratica> listaPraticas) {
+	public void setListaPraticas(List<Pratica> listaPraticas) {
 		this.listaPraticas = listaPraticas;
 	}
 	
-	public ArrayList<Turma> getListaTurmas() {
+	public List<Turma> getListaTurmas() {
 		return listaTurmas;
 	}
 
-	public void setListaTurmas(ArrayList<Turma> listaTurmas) {
+	public void setListaTurmas(List<Turma> listaTurmas) {
 		this.listaTurmas = listaTurmas;
 	}
 

@@ -20,14 +20,14 @@ public class GerenciadorProfessor {
 	}
 
 	public Professor pesquisarProfessor(String codigo) {
-		Professor professor = new Professor();
 		for (Professor p : listaProfessores) {
-			if (p.getCodigo() == codigo) {
-				professor = p;
-				break;
-			}
+			if (p.getCodigo().equalsIgnoreCase(codigo))
+				;
+			return p;
+
 		}
-		return professor;
+		throw new Excecao(
+				"Não existe este aluno com esta matricula no Sitema LogBook");
 	}
 
 	public Professor editarProfessor(Professor professor) {
@@ -48,10 +48,11 @@ public class GerenciadorProfessor {
 	}
 
 	public void deletarProfessor(String codigo) {
-		for (Professor p : listaProfessores) {		
+		for (Professor p : listaProfessores) {
 
 			if (p.getCodigo().equalsIgnoreCase(codigo)) {
-				listaProfessores.remove(p);	
+				listaProfessores.remove(p);				
+				return;
 			}
 		}
 	}

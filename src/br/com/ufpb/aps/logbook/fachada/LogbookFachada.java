@@ -136,12 +136,12 @@ public class LogbookFachada {
 		return null;// gpratica.editarPratica(pratica);
 	}
 	
-	public void deletarPratica (int pratica){
-		gpratica.deletarPratica(pratica);
+	public void deletarPratica (String numeroPratica){
+		gpratica.deletarPratica(numeroPratica);
 	}
 	
-	public Pratica pesquisarPratica (int pratica){
-		return null; //gpratica.pesquisarPratica(pratica);
+	public Pratica pesquisarPratica (String numeroPratica){
+		return gpratica.pesquisarPratica(numeroPratica);
 	}
 	
 	public List<Pratica> getListaPraticas(){

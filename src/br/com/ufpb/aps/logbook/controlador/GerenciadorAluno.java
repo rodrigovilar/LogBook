@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.excecao.Excecao;
 
-public class GerenciadorAluno extends Exception {
+public class GerenciadorAluno {
 
 	private List<Aluno> listaTodosAlunos = new ArrayList<Aluno>();
 
@@ -17,8 +17,7 @@ public class GerenciadorAluno extends Exception {
 
 	public Aluno pesquisarAluno(String matricula) {
 		for (Aluno aluno : listaTodosAlunos) {
-			if (aluno.getMatricula().equals(matricula))
-				;
+			if (aluno.getMatricula().equals(matricula));
 			return aluno;
 		}
 		throw new Excecao(
@@ -42,11 +41,11 @@ public class GerenciadorAluno extends Exception {
 	}
 
 	public void deletarAluno(String matricula) {
-		
+
 		for (Aluno b : listaTodosAlunos) {		
 
 			if (b.getMatricula().equalsIgnoreCase(matricula)) {
-				listaTodosAlunos.remove(b);	
+				listaTodosAlunos.remove(b);				
 				return;
 			}
 		}

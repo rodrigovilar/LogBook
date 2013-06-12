@@ -10,6 +10,8 @@ import org.junit.Test;
 import junit.framework.Assert;
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.Pergunta;
+import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Professor;
 import br.com.ufpb.aps.logbook.entidade.Turma;
 import br.com.ufpb.aps.logbook.fachada.LogbookFachada;
@@ -127,32 +129,30 @@ public class LogBookTeste {
 	}
 
 	@Test
-	public void testeCrudPratica(){
+	public void testCrudPratica() {
 		
-		
-		
-	}
-	@Ignore
-	public void testCrud() {
-		
-		List<Turma> turma1 = new ArrayList<Turma>();
-		Turma t1 = new Turma();
-		t1.setCodigo("001");
-		Assert.assertTrue(fachada.getListaTurmas().isEmpty());
+		Pergunta pergunta = new Pergunta();
+		List<Pergunta> listaPerguntas = new ArrayList<Pergunta>();
+		listaPerguntas.add(pergunta);
+		Pratica p1 = new Pratica();
+		p1.setNumeroPratica("001");
+		p1.setPergunta(listaPerguntas);
+
+		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
 		// CREATE ENTIDADE
-		fachada.adicionarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
-		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		fachada.adicionarPratica(p1);
+		Assert.assertFalse(fachada.getListaPraticas().isEmpty());
+		Assert.assertEquals(p1, fachada.pesquisarPratica("001"));
 		// UPDATE ENTIDADE
-		t1.setCodigo("001");
-		fachada.editarTurma(t1);
-		Assert.assertFalse(fachada.getListaTurmas().isEmpty());
-		Assert.assertEquals("001", fachada.pesquisarTurma("001").getCodigo());
+		p1.setNumeroPratica("001");
+		fachada.editarPratica(p1);
+		Assert.assertFalse(fachada.getListaPraticas().isEmpty());
+		Assert.assertEquals("001", fachada.pesquisarPratica("001").getNumeroPratica());
 		// GET ENTIDADE
-		Assert.assertEquals(t1, fachada.pesquisarTurma("001"));
+		Assert.assertEquals(p1, fachada.pesquisarPratica("001"));
 		// REMOVE ENTIDADE
-		fachada.deletarTurma("001");
-		// Assert.assertTrue(fachada.getListaDisciplinas().isEmpty());
+		fachada.deletarPratica("001");
+		Assert.assertTrue(fachada.getListaPraticas().isEmpty());
 	}
 	
 	// inserir Aluno - OK

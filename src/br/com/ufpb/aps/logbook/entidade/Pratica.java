@@ -1,16 +1,18 @@
 package br.com.ufpb.aps.logbook.entidade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pratica {
 	
-	private String pergunta;
+	
+	private String numeroPratica;
 	private Disciplina disciplina;
 	
-	private ArrayList<Resposta> listaResposta = new ArrayList<Resposta>();
+	private List<Pergunta> listaPerguntas = new ArrayList<Pergunta>();	
 	
-	public Pratica (String pergunta, Disciplina disciplina){
-		this.setPergunta(pergunta);
+	public Pratica (List<Pergunta> perguntas, Disciplina disciplina){
+		this.setPergunta(perguntas);
 		this.setDisciplina(disciplina);
 	}
 	
@@ -19,22 +21,31 @@ public class Pratica {
 	}
 	
 	
-	public String getPergunta() {
-		return pergunta;
+	
+	public String getNumeroPratica() {
+		return numeroPratica;
 	}
 
-	public void setPergunta(String pergunta) {
-		this.pergunta = pergunta;
+	public void setNumeroPratica(String numeroPratica) {
+		this.numeroPratica = numeroPratica;
 	}
 
-	public ArrayList<Resposta> getListaResposta() {
-		return listaResposta;
+	public List<Pergunta> getListaPerguntas() {
+		return listaPerguntas;
 	}
 
-	public void setListaResposta(ArrayList<Resposta> listaResposta) {
-		this.listaResposta = listaResposta;
+	public void setListaPerguntas(List<Pergunta> listaPerguntas) {
+		this.listaPerguntas = listaPerguntas;
 	}
 
+	public List<Pergunta> getPergunta() {
+		return listaPerguntas;
+	}
+
+	public void setPergunta(List<Pergunta> pergunta) {
+		this.listaPerguntas = pergunta;
+	}
+	
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
