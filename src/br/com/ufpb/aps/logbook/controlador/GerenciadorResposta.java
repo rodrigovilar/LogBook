@@ -4,47 +4,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Resposta;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.RespostaInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.RespostaJaCadastradaException;
+import br.com.ufpb.aps.logbook.excecao.RespostaSemDadosException;
 
 public class GerenciadorResposta {
 	
 	private List<Resposta> listaRespostas = new ArrayList<Resposta>();
 	
-	public void adicionarRespota(Resposta novaResposta) {
-		listaRespostas.add(novaResposta);
-	}
+	public void adicionarRespota(Resposta novaResposta) throws RespostaSemDadosException, RespostaJaCadastradaException, RespostaInexistenteException
+	{
+		if( novaResposta.getCodResposta() == null || novaResposta.getConteudo() == null) 
+			
+			throw new RespostaSemDadosException ("Impossível adicionar uma resposta sem os Dados!");
 	
-	public Resposta editarResposta(Resposta resposta) {
-		for (Resposta r : listaRespostas) {
-			if (resposta.getCodResposta().equals(r.getCodResposta())) {
-				r = resposta;
-				listaRespostas.add(r);
-				return r;
-			}
+		try 
+		{
+			pesquisarResposta(novaResposta.getCodResposta());
+			throw new RespostaJaCadastradaException("Já existe resposta cadastrada com o codigo informado!");
+			
+		} 
+
+		catch (RespostaInexistenteException e) 
+		{
+			listaRespostas.add(novaResposta);
 		}
-		throw new Excecao(
-				"Não existe está Disciplina com este código no sistema LogBook");
-	}
-	
-	public Resposta pesquisarResposta(String codResposta) {
-		Resposta resposta = new Resposta();
-		for (Resposta r : listaRespostas) {
-			if (r.getCodResposta() == codResposta)
-				resposta = r;
-			break;
-		}
-		return resposta;
-	}
-	
-	public void deletarRespota(String codResposta) {
-		Resposta resposta = new Resposta();
-		resposta = this.pesquisarResposta(codResposta);
 		
-		if (resposta.getCodResposta() == codResposta){
-			this.listaRespostas.remove(resposta);
-		}
-	} 
+	}
 	
+	public Resposta editarResposta(Resposta resposta) throws RespostaInexistenteException 
+	{
+		Resposta resp = pesquisarResposta (resposta.getCodResposta());
+		resp.setCodResposta(resposta.getCodResposta());
+		resp.setConteudo(resposta.getConteudo());
+		return resp;
+	}
+
+	public Resposta pesquisarResposta(String codResposta) throws RespostaInexistenteException
+	{
+		for (Resposta r : listaRespostas) 
+		{
+			if (r.getCodResposta().equals(codResposta))
+				return r;
+		}
+		throw new RespostaInexistenteException("Não existe esta resposta com este codigo no Sitema LogBook");
+	}
+
+	public void deletarRespota(String codResposta) throws RespostaInexistenteException 
+	{
+		Resposta resp = pesquisarResposta(codResposta);
+		listaRespostas.remove(resp);
+	} 
+
 	public List<Resposta> getListaRespostas() {
 		return listaRespostas;
 	}

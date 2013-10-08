@@ -1,9 +1,10 @@
 package br.com.ufpb.aps.logbook.entidade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Disciplina {
+public class Disciplina implements Serializable {
 
 	private String nomeDisciplina;
 	private String codigoDisciplina;
@@ -40,7 +41,7 @@ public class Disciplina {
 
 	public String toString() {
 		return "Disciplina: " + this.getNomeDisciplina()
-				+ "Código da Disciplina: " + this.getCodigoDisciplina()
+				+ "Cï¿½digo da Disciplina: " + this.getCodigoDisciplina()
 				+ "Turmas: " + this.getListaTurmas();
 	}
 
