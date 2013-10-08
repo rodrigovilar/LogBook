@@ -1,64 +1,75 @@
 package br.com.ufpb.aps.logbook.controlador;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Aluno;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.AlunoInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.AlunoJaCadastradoException;
+import br.com.ufpb.aps.logbook.excecao.AlunoSemDadosException;
+import br.com.ufpb.aps.logbook.persistencia.Persistencia;
 
 public class GerenciadorAluno {
+	private List<Aluno> listaTodosAlunos;
+	private Persistencia<Aluno> persistencia;
 
-	private List<Aluno> listaTodosAlunos = new ArrayList<Aluno>();
-
-	public void adicionarAluno(Aluno aluno) {
-		listaTodosAlunos.add(aluno);
+	public GerenciadorAluno() {
+		persistencia = new Persistencia<Aluno>("alunos.txt");
+		listaTodosAlunos = new ArrayList<Aluno>();
 	}
 
-	public Aluno pesquisarAluno(String matricula) {
+	public void adicionarAluno(Aluno aluno) throws AlunoSemDadosException,
+			AlunoJaCadastradoException, AlunoInexistenteException {
+		if (aluno.getMatricula() == null || aluno.getNome() == null
+				|| aluno.getEmail() == null || aluno.getLogin() == null
+				|| aluno.getSenha() == null)
+
+			throw new AlunoSemDadosException(
+					"Impossï¿½vel adicionar aluno sem dados!");
+
+		try {
+			pesquisarAluno(aluno.getMatricula());
+			throw new AlunoJaCadastradoException(
+					"Jï¿½ existe aluno cadastrado com a matrï¿½cula informada!");
+
+		}
+
+		catch (AlunoInexistenteException e1) {
+			listaTodosAlunos.add(aluno);
+			persistencia.save(listaTodosAlunos);
+		}
+	}
+
+	public Aluno editarDadosAluno(Aluno aluno) throws AlunoInexistenteException {
+		Aluno a = pesquisarAluno(aluno.getMatricula());
+		a.setEmail(aluno.getEmail());
+		a.setLogin(aluno.getLogin());
+		a.setNome(aluno.getNome());
+		a.setSobrenome(aluno.getSobrenome());
+		a.setSenha(aluno.getSenha());
+
+		persistencia.save(listaTodosAlunos);
+		return a;
+	}
+
+	public Aluno pesquisarAluno(String matricula)
+			throws AlunoInexistenteException {
 		for (Aluno aluno : listaTodosAlunos) {
-			if (aluno.getMatricula().equals(matricula));
-			return aluno;
+			if (aluno.getMatricula().equals(matricula))
+				return aluno;
 		}
-		throw new Excecao(
-				"Não existe este aluno com esta matricula no Sitema LogBook");
+
+		throw new AlunoInexistenteException(
+				"Nï¿½o existe este aluno com esta matricula no Sitema LogBook");
 	}
 
-	public Aluno EditarDadosAluno(Aluno aluno) {
-		for (Aluno a : listaTodosAlunos) {
-			if (aluno.getMatricula().equals(a.getMatricula())) {
-				a.setEmail(aluno.getEmail());
-				a.setLogin(aluno.getLogin());
-				a.setNome(aluno.getNome());
-				a.setSobrenome(aluno.getSobrenome());
-				a.setSenha(aluno.getSenha());
-				a.setMatricula(aluno.getMatricula());
-				return a;
-			}
-		}
-		throw new Excecao(
-				"Não existe aluno com está matricula no Sitema LogBook");
-	}
-
-	public void deletarAluno(String matricula) {
-		for (Aluno b : listaTodosAlunos) {		
-			if (b.getMatricula().equalsIgnoreCase(matricula)) {
-				listaTodosAlunos.remove(b);				
-				return;
-			}
-		}
-	}
-
-	public String listarAlunos() {
-		return listaTodosAlunos.toString();
+	public void deletarAluno(String matricula) throws AlunoInexistenteException {
+		Aluno a = pesquisarAluno(matricula);
+		listaTodosAlunos.remove(a);
+		persistencia.save(listaTodosAlunos);
 	}
 
 	public List<Aluno> getListaTodosAlunos() {
 		return listaTodosAlunos;
 	}
-
-	public void setListaTodosAlunos(List<Aluno> listaTodosAlunos) {
-		this.listaTodosAlunos = listaTodosAlunos;
-	}
-
 }
