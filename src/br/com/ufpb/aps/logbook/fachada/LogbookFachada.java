@@ -61,11 +61,13 @@ public class LogbookFachada {
 	GerenciadorPergunta gpergunta = new GerenciadorPergunta();
 
 	// Datos do Aluno
-	public void adicionarAluno(Aluno aluno) throws AlunoSemDadosException, AlunoJaCadastradoException, AlunoInexistenteException{
+	public void adicionarAluno(Aluno aluno) throws AlunoSemDadosException,
+			AlunoJaCadastradoException, AlunoInexistenteException {
 		galuno.adicionarAluno(aluno);
 	}
 
-	public Aluno pesquisarAluno(String matricula) throws AlunoInexistenteException {
+	public Aluno pesquisarAluno(String matricula)
+			throws AlunoInexistenteException {
 		return galuno.pesquisarAluno(matricula);
 	}
 
@@ -82,19 +84,23 @@ public class LogbookFachada {
 	}
 
 	// Dados da Disciplina
-	public void adicionarDisciplina(Disciplina disciplina) throws DisciplinaSemDadosException, DisciplinaJaCadastradaException {
+	public void adicionarDisciplina(Disciplina disciplina)
+			throws DisciplinaSemDadosException, DisciplinaJaCadastradaException {
 		gdisciplina.adicionarDisciplina(disciplina);
 	}
 
-	public Disciplina pesquisarDisciplina(String codigoDisciplina) throws DisciplinaInexistenteException {
+	public Disciplina pesquisarDisciplina(String codigoDisciplina)
+			throws DisciplinaInexistenteException {
 		return gdisciplina.pesquisarDisciplina(codigoDisciplina);
 	}
 
-	public Disciplina editarDisciplina(Disciplina disciplina) throws DisciplinaInexistenteException {
+	public Disciplina editarDisciplina(Disciplina disciplina)
+			throws DisciplinaInexistenteException {
 		return gdisciplina.editarDisciplina(disciplina);
 	}
 
-	public void deletarDisciplina(String codigoDisciplina) throws DisciplinaInexistenteException {
+	public void deletarDisciplina(String codigoDisciplina)
+			throws DisciplinaInexistenteException {
 		gdisciplina.deletarDisciplina(codigoDisciplina);
 	}
 
@@ -102,41 +108,52 @@ public class LogbookFachada {
 		return gdisciplina.getListaDisciplinas();
 	}
 
-	//Dados do LogBook
-	public void adicionarLogBook(LogBook logbook) throws AlunoSemDadosException, AlunoJaCadastradoException, AlunoInexistenteException, LogBookSemDadosException, LogBookJaCadastradoException{
-		glogbook.adicionarLogBook(logbook);		
+	// Dados do LogBook
+	public void adicionarLogBook(LogBook logbook)
+			throws AlunoSemDadosException, AlunoJaCadastradoException,
+			AlunoInexistenteException, LogBookSemDadosException,
+			LogBookJaCadastradoException {
+		glogbook.adicionarLogBook(logbook);
 	}
-	
-	public LogBook editarLogBook(LogBook logbook) throws AlunoInexistenteException, LogBookInexistenteException{
+
+	public LogBook editarLogBook(LogBook logbook)
+			throws AlunoInexistenteException, LogBookInexistenteException {
 		return glogbook.editarLogBook(logbook);
 	}
-	
-	public LogBook pesquisaLogBook(String codLogBook) throws AlunoInexistenteException, LogBookInexistenteException{
+
+	public LogBook pesquisaLogBook(String codLogBook)
+			throws AlunoInexistenteException, LogBookInexistenteException {
 		return glogbook.pesquisarLogBook(codLogBook);
 	}
-	
-	public void deletarLogBook(String codLogBook) throws AlunoInexistenteException, LogBookInexistenteException{
+
+	public void deletarLogBook(String codLogBook)
+			throws AlunoInexistenteException, LogBookInexistenteException {
 		glogbook.deletarLogBook(codLogBook);
 	}
 
 	public List<LogBook> listaLogBooks() {
 		return glogbook.listaLogBooks();
 	}
-	
+
 	// Dados da Pergunta
-	public void adicionarPergunta(Pergunta novaPergunta) throws PerguntaSemDadosException, PerguntaJaCadastradaException, PerguntaInexistenteException{
+	public void adicionarPergunta(Pergunta novaPergunta)
+			throws PerguntaSemDadosException, PerguntaJaCadastradaException,
+			PerguntaInexistenteException {
 		gpergunta.adicionarPergunta(novaPergunta);
 	}
 
-	public Pergunta editarPergunta(Pergunta pergunta) throws PerguntaInexistenteException{
+	public Pergunta editarPergunta(Pergunta pergunta)
+			throws PerguntaInexistenteException {
 		return gpergunta.editarPergunta(pergunta);
 	}
 
-	public Pergunta pesquisarPergunta(String pergunta) throws PerguntaInexistenteException{
+	public Pergunta pesquisarPergunta(String pergunta)
+			throws PerguntaInexistenteException {
 		return gpergunta.pesquisarPergunta(pergunta);
 	}
 
-	public void deletarPergunta(String codPergunta) throws PerguntaInexistenteException{
+	public void deletarPergunta(String codPergunta)
+			throws PerguntaInexistenteException {
 		gpergunta.deletarPergunta(codPergunta);
 	}
 
@@ -145,19 +162,24 @@ public class LogbookFachada {
 	}
 
 	// Dados da Prática
-	public void adicionarPratica(Pratica pratica) throws PraticaSemDadosException,  PraticaJaCadastradaException, PraticaInexistenteException{
+	public void adicionarPratica(Pratica pratica)
+			throws PraticaSemDadosException, PraticaJaCadastradaException,
+			PraticaInexistenteException {
 		gpratica.adicionarPraticaProfessor(pratica);
 	}
 
-	public Pratica editarPratica(Pratica pratica) throws PraticaInexistenteException{
+	public Pratica editarPratica(Pratica pratica)
+			throws PraticaInexistenteException {
 		return gpratica.editarPratica(pratica);
 	}
 
-	public void deletarPratica(String numeroPratica) throws PraticaInexistenteException{
+	public void deletarPratica(String numeroPratica)
+			throws PraticaInexistenteException {
 		gpratica.deletarPratica(numeroPratica);
 	}
 
-	public Pratica pesquisarPratica(String numeroPratica)  throws PraticaInexistenteException{
+	public Pratica pesquisarPratica(String numeroPratica)
+			throws PraticaInexistenteException {
 		return gpratica.pesquisarPratica(numeroPratica);
 	}
 
@@ -166,19 +188,24 @@ public class LogbookFachada {
 	}
 
 	// Dados do Professor
-	public void adicionarProfessor(Professor professor) throws ProfessorSemDadosException,  ProfessorJaCadastradoException, ProfessorInexistenteException{
+	public void adicionarProfessor(Professor professor)
+			throws ProfessorSemDadosException, ProfessorJaCadastradoException,
+			ProfessorInexistenteException {
 		gprofessor.adicionarProfessor(professor);
 	}
 
-	public Professor pesquisarProfessor(String codigo) throws ProfessorInexistenteException {
+	public Professor pesquisarProfessor(String codigo)
+			throws ProfessorInexistenteException {
 		return gprofessor.pesquisarProfessor(codigo);
 	}
 
-	public Professor editarProfessor(Professor professor) throws ProfessorInexistenteException {
+	public Professor editarProfessor(Professor professor)
+			throws ProfessorInexistenteException {
 		return gprofessor.editarDadosProfessor(professor);
 	}
 
-	public void deletarProfessor(String codigo) throws ProfessorInexistenteException{
+	public void deletarProfessor(String codigo)
+			throws ProfessorInexistenteException {
 		gprofessor.deletarProfessor(codigo);
 	}
 
@@ -187,19 +214,24 @@ public class LogbookFachada {
 	}
 
 	// Dados da Resposta
-	public void adicionarRespota(Resposta novaResposta) throws RespostaSemDadosException,  RespostaJaCadastradaException, RespostaInexistenteException{
+	public void adicionarRespota(Resposta novaResposta)
+			throws RespostaSemDadosException, RespostaJaCadastradaException,
+			RespostaInexistenteException {
 		gresposta.adicionarRespota(novaResposta);
 	}
 
-	public Resposta editarResposta(Resposta resposta) throws RespostaInexistenteException{
+	public Resposta editarResposta(Resposta resposta)
+			throws RespostaInexistenteException {
 		return gresposta.editarResposta(resposta);
 	}
 
-	public Resposta pesquisarResposta(String codResposta) throws RespostaInexistenteException{
+	public Resposta pesquisarResposta(String codResposta)
+			throws RespostaInexistenteException {
 		return gresposta.pesquisarResposta(codResposta);
 	}
 
-	public void deletarRespota(String codResposta) throws RespostaInexistenteException{
+	public void deletarRespota(String codResposta)
+			throws RespostaInexistenteException {
 		gresposta.deletarRespota(codResposta);
 	}
 
@@ -208,7 +240,8 @@ public class LogbookFachada {
 	}
 
 	// Dados da Turma
-	public void adicionarTurma(Turma novaTurma) throws TurmaSemDadosException, TurmaJaCadastradaException, TurmaInexistenteException {
+	public void adicionarTurma(Turma novaTurma) throws TurmaSemDadosException,
+			TurmaJaCadastradaException, TurmaInexistenteException {
 		gturma.adicionarTurma(novaTurma);
 	}
 
@@ -216,11 +249,13 @@ public class LogbookFachada {
 		return gturma.editarTurma(turma);
 	}
 
-	public void deletarTurma(String codigoTurma) throws TurmaInexistenteException{
+	public void deletarTurma(String codigoTurma)
+			throws TurmaInexistenteException {
 		gturma.deletarTurma(codigoTurma);
 	}
 
-	public Turma pesquisarTurma(String codigoTurma) throws TurmaInexistenteException {
+	public Turma pesquisarTurma(String codigoTurma)
+			throws TurmaInexistenteException {
 		return gturma.pesquisarTurma(codigoTurma);
 	}
 
@@ -229,24 +264,28 @@ public class LogbookFachada {
 	}
 
 	// Dados do Usuário
-	public void adicionarUsuario(Usuario novoUsuario) throws UsuarioSemDadosException, UsuarioJaCadastradoException {
+	public void adicionarUsuario(Usuario novoUsuario)
+			throws UsuarioSemDadosException, UsuarioJaCadastradoException {
 		gusuario.adicionarUsuario(novoUsuario);
 	}
-	
-	public Usuario editarDadosUsuario(Usuario usuario) throws UsuarioInexistenteException{
+
+	public Usuario editarDadosUsuario(Usuario usuario)
+			throws UsuarioInexistenteException {
 		return gusuario.editarDadosUsuario(usuario);
 	}
-	
-	public Usuario pesquisarUsuario(String codigo) throws UsuarioInexistenteException{
+
+	public Usuario pesquisarUsuario(String codigo)
+			throws UsuarioInexistenteException {
 		return gusuario.pesquisarUsuario(codigo);
 	}
-	
-	public void deletarUsuario(String codigo) throws UsuarioInexistenteException{
+
+	public void deletarUsuario(String codigo)
+			throws UsuarioInexistenteException {
 		gusuario.deletarUsuario(codigo);
 	}
 
 	public List<Usuario> listaTodosUsuarios() {
 		return gusuario.getListaTodosUsuarios();
 	}
-	
+
 }

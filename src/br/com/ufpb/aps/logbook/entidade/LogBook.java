@@ -5,13 +5,13 @@ import java.util.List;
 
 public class LogBook {
 
-	//Chave primaria
+	// Chave primaria
 	private String codLogBook;
-	
+
 	private String assunto;
 	private String data;
 	private String hora;
-	
+
 	private Professor professor;
 	private Disciplina disciplina;
 	private Turma turma;

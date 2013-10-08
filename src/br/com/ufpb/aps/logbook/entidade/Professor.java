@@ -6,7 +6,7 @@ public class Professor extends Usuario {
 
 	private String codigo;
 	private Disciplina disciplina;
-	
+
 	public Professor(String nome, String sobrenome, String email, String senha,
 			String login, String codigo, Disciplina disciplina) {
 		super(nome, sobrenome, email, senha, login, codigo);
@@ -42,4 +42,3 @@ public class Professor extends Usuario {
 	}
 
 }
-

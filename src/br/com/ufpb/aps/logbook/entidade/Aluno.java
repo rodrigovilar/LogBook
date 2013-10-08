@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Aluno extends Usuario implements Serializable {
 
 	private String matricula;
-	
-	private ArrayList<Resposta> listaResposta = new ArrayList<Resposta>(); 
+
+	private ArrayList<Resposta> listaResposta = new ArrayList<Resposta>();
 	private ArrayList<Turma> listaTurmas = new ArrayList<Turma>();
 
 	public Aluno(String nome, String sobrenome, String email, String senha,

@@ -14,14 +14,16 @@ public class Disciplina implements Serializable {
 	private List<Turma> listaTurmas = new ArrayList<Turma>();
 	private List<Pratica> listaPraticas = new ArrayList<Pratica>();
 
-	public Disciplina(String nomeDisciplina, String codigoDisciplina, Pratica pratica, Professor professor) {
+	public Disciplina(String nomeDisciplina, String codigoDisciplina,
+			Pratica pratica, Professor professor) {
 		this.nomeDisciplina = nomeDisciplina;
 		this.codigoDisciplina = codigoDisciplina;
 		this.pratica = pratica;
 		this.setProfessor(professor);
 	}
-	
-	public Disciplina(){}
+
+	public Disciplina() {
+	}
 
 	public String getNomeDisciplina() {
 		return nomeDisciplina;
@@ -52,7 +54,7 @@ public class Disciplina implements Serializable {
 	public void setPraticas(List<Pratica> praticas) {
 		this.listaPraticas = praticas;
 	}
-	
+
 	public List<Pratica> getListaPraticas() {
 		return listaPraticas;
 	}
@@ -60,7 +62,7 @@ public class Disciplina implements Serializable {
 	public void setListaPraticas(List<Pratica> listaPraticas) {
 		this.listaPraticas = listaPraticas;
 	}
-	
+
 	public List<Turma> getListaTurmas() {
 		return listaTurmas;
 	}
