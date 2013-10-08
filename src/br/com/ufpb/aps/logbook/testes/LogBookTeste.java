@@ -220,7 +220,6 @@ public class LogBookTeste {
 		fachada.deletarDisciplina("001");
 		Assert.assertTrue(fachada.listaDisciplinas().isEmpty());
 	}
-<<<<<<< HEAD
 
 	@Test(expected = DisciplinaInexistenteException.class)
 	public void testRemoverDisciplinaInexistente()
@@ -237,24 +236,6 @@ public class LogBookTeste {
 		p1.setCodigo("001");
 		p1.setSenha("1234");
 
-=======
-
-	@Test(expected = DisciplinaInexistenteException.class)
-	public void testRemoverDisciplinaInexistente()
-			throws DisciplinaInexistenteException {
-		fachada.deletarDisciplina("000");
-	}
-
-	private Professor criarProfessor() {
-		Professor p1 = new Professor();
-		p1.setNome("Rodrigo");
-		p1.setSobrenome("Vilar");
-		p1.setEmail("rodrigov@dce.ufpb.br");
-		p1.setLogin("rodrigov");
-		p1.setCodigo("001");
-		p1.setSenha("1234");
-
->>>>>>> 21b41e3be457cca2837fdc6cbfc2b48447deb380
 		return p1;
 	}
 
@@ -428,7 +409,6 @@ public class LogBookTeste {
 			throws UsuarioSemDadosException, UsuarioInexistenteException {
 		fachada.deletarUsuario("001");
 	}
-<<<<<<< HEAD
 
 	private Turma criarTurma() {
 		Turma t = new Turma();
@@ -904,6 +884,4 @@ public class LogBookTeste {
 			throws LogBookInexistenteException, AlunoInexistenteException {
 		fachada.deletarLogBook("00");
 	}
-=======
->>>>>>> 21b41e3be457cca2837fdc6cbfc2b48447deb380
 }
