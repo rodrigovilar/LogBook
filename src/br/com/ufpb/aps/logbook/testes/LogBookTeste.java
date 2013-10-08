@@ -18,8 +18,6 @@ import br.com.ufpb.aps.logbook.fachada.LogbookFachada;
 
 public class LogBookTeste {
 
-	public void testa qualquer coisa(){
-}
 	LogbookFachada fachada;
 
 	@Before
