@@ -32,7 +32,7 @@ public class GerenciadorDisciplina {
 		try {
 			pesquisarDisciplina(disciplina.getCodigoDisciplina());
 			throw new DisciplinaJaCadastradaException(
-					"Disciplina j? cadastrada");
+					"Disciplina j� cadastrada");
 		}
 
 		catch (DisciplinaInexistenteException e) {
@@ -58,7 +58,7 @@ public class GerenciadorDisciplina {
 		}
 
 		throw new DisciplinaInexistenteException(
-				"A disciplina n?o foi encontrada no sistema");
+				"A disciplina n�o foi encontrada no sistema");
 	}
 
 	public void deletarDisciplina(String codigoDisciplina)
