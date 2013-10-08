@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Pratica;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.PraticaInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.PraticaJaCadastradaException;
+import br.com.ufpb.aps.logbook.excecao.PraticaSemDadosException;
 
 public class GerenciadorPratica {
 	
@@ -12,44 +14,48 @@ public class GerenciadorPratica {
 	
 	private List<Pratica> listaPraticas = new ArrayList<Pratica>();
 	
-	public void adicionarPraticaProfessor(Pratica novaPratica) {
-		listaPraticas.add(novaPratica);
-	}
-
-	public Pratica editarPratica(Pratica pratica) {
-
-		for (Pratica p : listaPraticas) {
-			if (p.getNumeroPratica().equals(pratica.getNumeroPratica())) {
-				p = pratica;
-				listaPraticas.add(p);
-				return p;
-			}
-		}
-		throw new Excecao(
-				"Não existe este aluno com esta matricula no Sitema LogBook");
-	}
-
-	public Pratica pesquisarPratica(String numPratica) {
+	public void adicionarPraticaProfessor(Pratica novaPratica) throws PraticaSemDadosException, PraticaJaCadastradaException, PraticaInexistenteException
+	{
+		if(novaPratica.getNumeroPratica() == null)
+			throw new PraticaSemDadosException("Pratica sem Dados");
 		
-		for (Pratica p : listaPraticas) {
-			if (p.getNumeroPratica().equalsIgnoreCase(numPratica)) {
+		try 
+		{
+			pesquisarPratica(novaPratica.getNumeroPratica());
+			throw new PraticaJaCadastradaException("Pratica jï¿½ cadastrada");
+		}
+		
+		catch (PraticaInexistenteException e)
+		{
+			listaPraticas.add(novaPratica);
+		}	
+	}
+
+	public Pratica editarPratica(Pratica pratica) throws PraticaInexistenteException 
+	{
+		Pratica p = pesquisarPratica(pratica.getNumeroPratica());
+		p.setNumeroPratica(pratica.getNumeroPratica());
+		return p;
+	}
+
+	public Pratica pesquisarPratica(String numPratica) throws PraticaInexistenteException 
+	{
+		
+		for (Pratica p : listaPraticas) 
+		{
+			if (p.getNumeroPratica().equals(numPratica)) 
+			{
 				return p;
 			}
 		}
-		throw new Excecao(
-				"Não existe este aluno com esta prática no Sitema LogBook");
+		
+		throw new PraticaInexistenteException("Nï¿½o existe estï¿½ prï¿½tica no Sitema LogBook");
 	}
 
-	public void deletarPratica(String numeroPratica) {
-		for (Pratica d : listaPraticas) {
-			if (d.getNumeroPratica().equalsIgnoreCase(numeroPratica)) {
-				listaPraticas.remove(d);
-				return;
-			}
-
-		}
-		throw new Excecao(
-				"Não existe este aluno com esta prática no Sitema LogBook");
+	public void deletarPratica(String numeroPratica) throws PraticaInexistenteException
+	{
+		Pratica p = pesquisarPratica(numeroPratica);
+		listaPraticas.remove(p);
 	}
 
 	public List<Pratica> getPraticas() {
