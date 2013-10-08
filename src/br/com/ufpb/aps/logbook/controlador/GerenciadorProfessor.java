@@ -19,14 +19,14 @@ public class GerenciadorProfessor {
 				|| professor.getEmail() == null
 				|| professor.getCodigo() == null
 				|| professor.getLogin() == null 
-				|| professor.getSenha() == null) 
+				|| professor.getSenha() == null)
 			
-			throw new ProfessorSemDadosException ("Impossível adicionar professor sem dados");
+			throw new ProfessorSemDadosException ("Impossï¿½vel adicionar professor sem dados");
 		
 		try 
 		{
 			pesquisarProfessor(professor.getCodigo());
-			throw new ProfessorJaCadastradoException("Já existe um professor cadastrado com o código informado!");
+			throw new ProfessorJaCadastradoException("Jï¿½ existe um professor cadastrado com o cï¿½digo informado!");
 		}
 		
 		catch (ProfessorInexistenteException e1) 
@@ -43,7 +43,7 @@ public class GerenciadorProfessor {
 			return p;
 		}
 		
-		throw new ProfessorInexistenteException("Não existe professor com este código no Sitema LogBook");
+		throw new ProfessorInexistenteException("Nï¿½o existe professor com este cï¿½digo no Sitema LogBook");
 	}
 
 	public Professor editarDadosProfessor(Professor professor) throws ProfessorInexistenteException 

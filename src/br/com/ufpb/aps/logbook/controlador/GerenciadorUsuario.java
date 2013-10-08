@@ -27,7 +27,7 @@ public class GerenciadorUsuario {
 		try 
 		{
 			pesquisarUsuario(novoUsuario.getCodigo());
-			throw new UsuarioJaCadastradoException("Já existe usuário cadastrado com o código informado!");
+			throw new UsuarioJaCadastradoException("Jï¿½ existe usuï¿½rio cadastrado com o cï¿½digo informado!");
 		}
 		
 		catch (UsuarioInexistenteException e1 )
@@ -44,17 +44,17 @@ public class GerenciadorUsuario {
 				return usuario;
 		}
 		
-		throw new UsuarioInexistenteException("Não existe usuario com este codigo no Sitema LogBook");
+		throw new UsuarioInexistenteException("Nï¿½o existe usuario com este codigo no Sitema LogBook");
 	}
 	
 	public Usuario editarDadosUsuario(Usuario usuario) throws UsuarioInexistenteException 
 	{
 		Usuario u = pesquisarUsuario(usuario.getCodigo());
-		u.setEmail(u.getEmail());
-		u.setLogin(u.getLogin());
-		u.setNome(u.getNome());
-		u.setSenha(u.getSenha());
-		u.setSobrenome(u.getSobrenome());
+		u.setEmail(usuario.getEmail());
+		u.setLogin(usuario.getLogin());
+		u.setNome(usuario.getNome());
+		u.setSenha(usuario.getSenha());
+		u.setSobrenome(usuario.getSobrenome());
 		return u;
 	}
 	

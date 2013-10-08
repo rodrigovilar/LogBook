@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.LogBook;
-import br.com.ufpb.aps.logbook.excecao.AlunoInexistenteException;
-import br.com.ufpb.aps.logbook.excecao.AlunoJaCadastradoException;
-import br.com.ufpb.aps.logbook.excecao.AlunoSemDadosException;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
 import br.com.ufpb.aps.logbook.excecao.LogBookInexistenteException;
 import br.com.ufpb.aps.logbook.excecao.LogBookJaCadastradoException;
 import br.com.ufpb.aps.logbook.excecao.LogBookSemDadosException;
@@ -29,11 +25,11 @@ public class GerenciadorLogBook {
 				|| logbook.getListaPratica() == null
 				|| logbook.getListaResposta() == null)
 			
-				throw new LogBookSemDadosException ("Impossível adicionar LogBook sem dados!");
+				throw new LogBookSemDadosException ("Impossï¿½vel adicionar LogBook sem dados!");
 		try
 		{
 			pesquisarLogBook(logbook.getCodLogBook());
-			throw new LogBookJaCadastradoException("Já existe um LogBook cadastrado com o código informado!");
+			throw new LogBookJaCadastradoException("Jï¿½ existe um LogBook cadastrado com o cï¿½digo informado!");
 		}
 		
 		catch (LogBookInexistenteException e1)
@@ -66,7 +62,7 @@ public class GerenciadorLogBook {
 			if (lb.getCodLogBook().equals(codigoLogBook))
 				return lb;
 		}
-		throw new LogBookInexistenteException("Não existe este LogBook com este código no Sitema LogBook");
+		throw new LogBookInexistenteException("Nï¿½o existe este LogBook com este cï¿½digo no Sitema LogBook");
 	}
 
 	public void deletarLogBook(String codigoLogBook) throws LogBookInexistenteException 
