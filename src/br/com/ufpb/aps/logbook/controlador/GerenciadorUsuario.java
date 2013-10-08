@@ -3,6 +3,10 @@ package br.com.ufpb.aps.logbook.controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ufpb.aps.logbook.entidade.Aluno;
+import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.Professor;
+import br.com.ufpb.aps.logbook.entidade.Resposta;
 import br.com.ufpb.aps.logbook.entidade.Usuario;
 import br.com.ufpb.aps.logbook.excecao.Excecao;
 
@@ -52,4 +56,5 @@ public class GerenciadorUsuario {
 	public void setListaTodosUsuarios(List<Usuario> listaTodosUsuarios) {
 		this.listaTodosUsuarios = listaTodosUsuarios;
 	}
+
 }

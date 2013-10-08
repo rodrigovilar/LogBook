@@ -3,6 +3,8 @@ package br.com.ufpb.aps.logbook.controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ufpb.aps.logbook.entidade.Disciplina;
+import br.com.ufpb.aps.logbook.entidade.Pratica;
 import br.com.ufpb.aps.logbook.entidade.Resposta;
 import br.com.ufpb.aps.logbook.excecao.Excecao;
 
@@ -52,4 +54,6 @@ public class GerenciadorResposta {
 	public void setListaRespostas(List<Resposta> listaRespostas) {
 		this.listaRespostas = listaRespostas;
 	}
+	
+	
 }
