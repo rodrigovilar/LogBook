@@ -119,9 +119,9 @@ public class LogBookTeste {
 			AlunoInexistenteException, AlunoJaCadastradoException {
 		Aluno a1 = criarAluno();
 		fachada.adicionarAluno(a1);
-		a1.setNome("JosÃ©");
+		a1.setNome("José");
 		fachada.editarDadosAluno(a1);
-		Assert.assertEquals("JosÃ©", fachada.pesquisarAluno("80911008")
+		Assert.assertEquals("José", fachada.pesquisarAluno("80911008")
 				.getNome());
 	}
 
@@ -235,7 +235,7 @@ public class LogBookTeste {
 		p1.setLogin("rodrigov");
 		p1.setCodigo("001");
 		p1.setSenha("1234");
-
+		
 		return p1;
 	}
 
@@ -257,8 +257,7 @@ public class LogBookTeste {
 		fachada.adicionarProfessor(p);
 	}
 
-	@Test
-	// (expected = ProfessorSemDadosException.class)
+	@Test(expected = ProfessorSemDadosException.class)
 	public void testAdicionarProfessorSemDisciplina()
 			throws ProfessorSemDadosException, ProfessorJaCadastradoException,
 			ProfessorInexistenteException {
@@ -388,9 +387,9 @@ public class LogBookTeste {
 			UsuarioInexistenteException, UsuarioJaCadastradoException {
 		Usuario u = criarUsuario();
 		fachada.adicionarUsuario(u);
-		u.setNome("JosÃ©");
+		u.setNome("Simone");
 		fachada.editarDadosUsuario(u);
-		Assert.assertEquals("JosÃ©", fachada.pesquisarUsuario("001").getNome());
+		Assert.assertEquals("José", fachada.pesquisarUsuario("001").getNome());
 	}
 
 	@Test
@@ -442,7 +441,7 @@ public class LogBookTeste {
 		Assert.assertTrue(fachada.listaDisciplinas().isEmpty());
 		Turma t = criarTurma();
 		fachada.adicionarTurma(t);
-		Assert.assertEquals(fachada.listaTurmas().size(), 1);
+		Assert.assertEquals(fachada.listaDisciplinas().size(), 1);
 	}
 
 	@Test(expected = TurmaSemDadosException.class)
@@ -455,17 +454,15 @@ public class LogBookTeste {
 
 	@Test(expected = TurmaSemDadosException.class)
 	public void testAdicionarTurmaSemProfessor() throws TurmaSemDadosException,
-			TurmaJaCadastradaException, TurmaInexistenteException {
+			TurmaJaCadastradaException {
 		Turma t = criarTurma();
-		t.setProfessores(null);
-
-		fachada.adicionarTurma(t);
+		Professor p = criarProfessor();
+		t.setProfessores(p);
 	}
 
 	@Test(expected = TurmaJaCadastradaException.class)
 	public void testAdicionarTurmaComCodigoJaCadastrado()
-			throws TurmaSemDadosException, TurmaJaCadastradaException,
-			TurmaInexistenteException {
+			throws TurmaSemDadosException, TurmaJaCadastradaException, TurmaInexistenteException {
 		Turma t1 = criarTurma();
 		fachada.adicionarTurma(t1);
 		Turma t2 = criarTurma();
@@ -591,7 +588,7 @@ public class LogBookTeste {
 	private Pergunta criarPergunta() {
 		Pergunta p = new Pergunta();
 		p.setCodPergunta("01");
-		p.setPergunta("O que ï¿½ um objeto?");
+		p.setPergunta("O que é um objeto?");
 
 		return p;
 	}
@@ -648,7 +645,7 @@ public class LogBookTeste {
 	@Test
 	public void testRemoverPergunta() throws PerguntaSemDadosException,
 			PerguntaInexistenteException, PerguntaJaCadastradaException,
-			PerguntaInexistenteException {
+			PerguntaInexistenteException {		
 		Assert.assertTrue(fachada.listPerguntas().isEmpty());
 		Pergunta p = criarPergunta();
 		fachada.adicionarPergunta(p);
@@ -677,7 +674,7 @@ public class LogBookTeste {
 	private Resposta criarResposta() {
 		Resposta r = new Resposta();
 		r.setCodResposta("01");
-		r.setConteudo("objeto ï¿½ uma classe!");
+		r.setConteudo("objeto é uma classe!");
 
 		return r;
 	}
@@ -693,8 +690,7 @@ public class LogBookTeste {
 
 	@Test(expected = RespostaSemDadosException.class)
 	public void testAdcionarRespostaSemCodigo()
-			throws RespostaSemDadosException, RespostaJaCadastradaException,
-			RespostaInexistenteException {
+			throws RespostaSemDadosException, RespostaJaCadastradaException, RespostaInexistenteException {
 		Resposta r = criarResposta();
 		r.setCodResposta(null);
 		fachada.adicionarRespota(r);
@@ -702,8 +698,7 @@ public class LogBookTeste {
 
 	@Test(expected = RespostaJaCadastradaException.class)
 	public void testRespostaComCodigoJaCadastrado()
-			throws RespostaJaCadastradaException, RespostaSemDadosException,
-			RespostaInexistenteException {
+			throws RespostaJaCadastradaException, RespostaSemDadosException, RespostaInexistenteException {
 		Resposta r1 = criarResposta();
 		fachada.adicionarRespota(r1);
 		Resposta r2 = criarResposta();
@@ -711,8 +706,7 @@ public class LogBookTeste {
 	}
 
 	@Test(expected = RespostaSemDadosException.class)
-	public void testRespostaSemPergunta() throws RespostaSemDadosException,
-			RespostaJaCadastradaException, RespostaInexistenteException {
+	public void testRespostaSemPergunta() throws RespostaSemDadosException, RespostaJaCadastradaException, RespostaInexistenteException {
 		Resposta r = criarResposta();
 		r.setCodResposta(null);
 		fachada.adicionarRespota(r);
@@ -749,8 +743,7 @@ public class LogBookTeste {
 	}
 
 	@Test
-	public void tesAtualizarResposta() throws RespostaSemDadosException,
-			RespostaJaCadastradaException, RespostaInexistenteException {
+	public void tesAtualizarResposta() throws RespostaSemDadosException, RespostaJaCadastradaException, RespostaInexistenteException {
 		Resposta r = criarResposta();
 		fachada.adicionarRespota(r);
 		r.setCodResposta("02");
@@ -762,7 +755,7 @@ public class LogBookTeste {
 	private LogBook criarLogBook() {
 		LogBook lb = new LogBook();
 		lb.setCodLogBook("01");
-		lb.setAssunto("Programaï¿½ï¿½o com Java");
+		lb.setAssunto("Programação com Java");
 		lb.setHora("04:20");
 		lb.setData("07-10-2013");
 
@@ -777,7 +770,7 @@ public class LogBookTeste {
 
 		Pergunta perg = new Pergunta();
 		perg.setCodPergunta("01");
-		perg.setPergunta("O que ï¿½ uma variavel?");
+		perg.setPergunta("O que é uma variavel?");
 
 		List<Pergunta> listaPergunta = new ArrayList<Pergunta>();
 		lb.setListaPergunta(listaPergunta);
@@ -790,7 +783,7 @@ public class LogBookTeste {
 
 		Resposta resp = new Resposta();
 		resp.setCodResposta("01");
-		resp.setConteudo(" ï¿½ uma posiï¿½ï¿½o, frequentemente localizada na memï¿½ria");
+		resp.setConteudo(" é uma posição, frequentemente localizada na memória");
 
 		List<Resposta> listaResposta = new ArrayList<Resposta>();
 		lb.setListaResposta(listaResposta);
@@ -812,8 +805,7 @@ public class LogBookTeste {
 	@Test(expected = LogBookSemDadosException.class)
 	public void testAdicionarLogBookSemCodigo()
 			throws LogBookSemDadosException, AlunoSemDadosException,
-			AlunoJaCadastradoException, AlunoInexistenteException,
-			LogBookJaCadastradoException {
+			AlunoJaCadastradoException, AlunoInexistenteException, LogBookJaCadastradoException {
 		LogBook lb = criarLogBook();
 		lb.setCodLogBook(null);
 		fachada.adicionarLogBook(lb);
@@ -821,33 +813,26 @@ public class LogBookTeste {
 
 	@Test(expected = LogBookSemDadosException.class)
 	public void testAdicionarLogBookSemProfessor()
-			throws LogBookSemDadosException, AlunoSemDadosException,
-			AlunoJaCadastradoException, AlunoInexistenteException,
-			LogBookJaCadastradoException {
+			throws LogBookSemDadosException {
 		LogBook lb = criarLogBook();
-		lb.setProfessor(null);
-
-		fachada.adicionarLogBook(lb);
+		Professor p = criarProfessor();
+		lb.setProfessor(p);
 	}
 
 	@Test(expected = LogBookSemDadosException.class)
 	public void testAdicionarLogBookSemDisciplina()
-			throws LogBookSemDadosException, LogBookJaCadastradoException,
-			AlunoSemDadosException, AlunoJaCadastradoException,
-			AlunoInexistenteException {
+			throws LogBookSemDadosException, LogBookJaCadastradoException {
 		LogBook lb = criarLogBook();
-		lb.setDisciplina(null);
-
-		fachada.adicionarLogBook(lb);
+		Disciplina d = criarDisciplina();
+		lb.setDisciplina(d);
 	}
 
 	@Test(expected = LogBookSemDadosException.class)
 	public void testAdicionarLogBookSemTurma() throws LogBookSemDadosException,
-			LogBookJaCadastradoException, AlunoSemDadosException,
-			AlunoJaCadastradoException, AlunoInexistenteException {
+			LogBookJaCadastradoException {
 		LogBook lb = criarLogBook();
-		lb.setTurma(null);
-		fachada.adicionarLogBook(lb);
+		Turma t = criarTurma();
+		lb.setTurma(t);
 	}
 
 	@Test

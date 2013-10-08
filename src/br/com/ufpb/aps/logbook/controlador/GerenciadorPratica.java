@@ -3,7 +3,12 @@ package br.com.ufpb.aps.logbook.controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.ufpb.aps.logbook.entidade.Disciplina;
 import br.com.ufpb.aps.logbook.entidade.Pratica;
+import br.com.ufpb.aps.logbook.excecao.DisciplinaInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.DisciplinaJaCadastradaException;
+import br.com.ufpb.aps.logbook.excecao.DisciplinaSemDadosException;
+import br.com.ufpb.aps.logbook.excecao.Excecao;
 import br.com.ufpb.aps.logbook.excecao.PraticaInexistenteException;
 import br.com.ufpb.aps.logbook.excecao.PraticaJaCadastradaException;
 import br.com.ufpb.aps.logbook.excecao.PraticaSemDadosException;
@@ -22,7 +27,7 @@ public class GerenciadorPratica {
 		try 
 		{
 			pesquisarPratica(novaPratica.getNumeroPratica());
-			throw new PraticaJaCadastradaException("Pratica jï¿½ cadastrada");
+			throw new PraticaJaCadastradaException("Pratica já cadastrada");
 		}
 		
 		catch (PraticaInexistenteException e)
@@ -49,7 +54,7 @@ public class GerenciadorPratica {
 			}
 		}
 		
-		throw new PraticaInexistenteException("Nï¿½o existe estï¿½ prï¿½tica no Sitema LogBook");
+		throw new PraticaInexistenteException("Não existe está prática no Sitema LogBook");
 	}
 
 	public void deletarPratica(String numeroPratica) throws PraticaInexistenteException

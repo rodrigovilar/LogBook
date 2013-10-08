@@ -12,44 +12,50 @@ public class GerenciadorTurma {
 
 	private List<Turma> listaTurmas = new ArrayList<Turma>();
 
-	public void adicionarTurma(Turma novaTurma) throws TurmaSemDadosException,
-			TurmaJaCadastradaException, TurmaInexistenteException {
-		if (novaTurma.getCodigo() == null || novaTurma.getAnoDaTurma() == null
+	public void adicionarTurma(Turma novaTurma) throws TurmaSemDadosException, TurmaJaCadastradaException, TurmaInexistenteException 
+	{
+		if (novaTurma.getCodigo() == null 
+				|| novaTurma.getAnoDaTurma() == null
 				|| novaTurma.getDisciplinas() == null
 				|| novaTurma.getProfessores() == null
 				|| novaTurma.getAlunos() == null)
-
+			
 			throw new TurmaSemDadosException("Turma sem Dados");
-
-		try {
-			pesquisarTurma(novaTurma.getCodigo());
-			throw new TurmaJaCadastradaException(
-					"O cï¿½digo desta turma jï¿½ foi cadastrado no Sistema");
-		} catch (TurmaInexistenteException e) {
-			listaTurmas.add(novaTurma);
+		
+		try
+		{
+			pesquisarTurma(novaTurma.getAnoDaTurma());
+			throw new TurmaJaCadastradaException("O código desta turma já foi cadastrado no Sistema");
 		}
+		
+		catch (TurmaInexistenteException e)
+		{
+			listaTurmas.add(novaTurma);
+		}	
 	}
 
-	public Turma editarTurma(Turma turma) throws TurmaInexistenteException {
+	public Turma editarTurma(Turma turma) throws TurmaInexistenteException 
+	{
 		Turma t = pesquisarTurma(turma.getCodigo());
 		t.setCodigo(turma.getCodigo());
 		return t;
 	}
-
-	public Turma pesquisarTurma(String codigoTurma)
-			throws TurmaInexistenteException {
-		for (Turma t : listaTurmas) {
-			if (t.getCodigo().equals(codigoTurma)) {
+	
+	public Turma pesquisarTurma(String codigoTurma) throws TurmaInexistenteException 
+	{
+		for (Turma t : listaTurmas) 
+		{
+			if (t.getCodigo().equals(codigoTurma)) 
+			{
 				return t;
 			}
 		}
-
-		throw new TurmaInexistenteException(
-				"A turma nï¿½o foi encontrada no sistema");
+		
+		throw new TurmaInexistenteException("A turma não foi encontrada no sistema");
 	}
-
-	public void deletarTurma(String codigoTurma)
-			throws TurmaInexistenteException {
+	
+	public void deletarTurma(String codigoTurma) throws TurmaInexistenteException 
+	{
 		Turma t = pesquisarTurma(codigoTurma);
 		listaTurmas.remove(t);
 	}

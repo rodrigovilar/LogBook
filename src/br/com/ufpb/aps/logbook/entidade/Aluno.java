@@ -1,9 +1,8 @@
 package br.com.ufpb.aps.logbook.entidade;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Aluno extends Usuario implements Serializable {
+public class Aluno extends Usuario {
 
 	private String matricula;
 	

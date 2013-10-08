@@ -206,7 +206,6 @@ public class LogbookFachada {
 	public List<Resposta> listaRespostas() {
 		return gresposta.getListaRespostas();
 	}
-<<<<<<< HEAD
 
 	// Dados da Turma
 	public void adicionarTurma(Turma novaTurma) throws TurmaSemDadosException, TurmaJaCadastradaException, TurmaInexistenteException {
@@ -249,7 +248,5 @@ public class LogbookFachada {
 	public List<Usuario> listaTodosUsuarios() {
 		return gusuario.getListaTodosUsuarios();
 	}
-=======
->>>>>>> 21b41e3be457cca2837fdc6cbfc2b48447deb380
 	
 }

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Pergunta;
+import br.com.ufpb.aps.logbook.excecao.AlunoInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.AlunoJaCadastradoException;
+import br.com.ufpb.aps.logbook.excecao.AlunoSemDadosException;
+import br.com.ufpb.aps.logbook.excecao.Excecao;
 import br.com.ufpb.aps.logbook.excecao.PerguntaInexistenteException;
 import br.com.ufpb.aps.logbook.excecao.PerguntaJaCadastradaException;
 import br.com.ufpb.aps.logbook.excecao.PerguntaSemDadosException;
@@ -14,13 +18,13 @@ public class GerenciadorPergunta {
 
 	public void adicionarPergunta(Pergunta novaPergunta) throws PerguntaSemDadosException, PerguntaJaCadastradaException 
 	{
-		if(novaPergunta.getCodPergunta() == null || novaPergunta.getPergunta() == null)
-			throw new PerguntaSemDadosException ("Impossï¿½vel adicionar pergunta sem dados!");
+		if(novaPergunta.getCodPergunta() == null || novaPergunta.getCodPergunta() == null)
+			throw new PerguntaSemDadosException ("Impossível adicionar pergunta sem dados!");
 		
 		try
 		{
 			pesquisarPergunta(novaPergunta.getCodPergunta());
-			throw new PerguntaJaCadastradaException("Jï¿½ existe pergunta cadastrada com o cï¿½digo informado!");
+			throw new PerguntaJaCadastradaException("Já existe pergunta cadastrada com o código informado!");
 		}
 		
 		catch (PerguntaInexistenteException e1) 
@@ -46,7 +50,7 @@ public class GerenciadorPergunta {
 			if(p.getCodPergunta().equals(codPergunta));
 				return p;
 		}
-		throw new PerguntaInexistenteException("Nï¿½o existe esta pergunta no Sitema LogBook");
+		throw new PerguntaInexistenteException("Não existe esta pergunta no Sitema LogBook");
 	}
 
 	public void deletarPergunta(String codPergunta) throws PerguntaInexistenteException 
