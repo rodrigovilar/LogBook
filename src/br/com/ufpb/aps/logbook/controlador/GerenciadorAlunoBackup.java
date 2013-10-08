@@ -10,12 +10,10 @@ import br.com.ufpb.aps.logbook.persistencia.Persistencia;
 public class GerenciadorAlunoBackup {
 	private List<Aluno> listaTodosAlunos;
 	private Persistencia<Aluno> persistencia;
-
 	public GerenciadorAlunoBackup() {
 		persistencia = new Persistencia<Aluno>("alunos.txt");
 		listaTodosAlunos = persistencia.read();
 	}
-
 	public void adicionarAluno(Aluno aluno) throws AlunoSemDadosException,
 			AlunoJaCadastradoException, AlunoInexistenteException {
 		if (aluno.getMatricula() == null || aluno.getNome() == null
@@ -32,7 +30,6 @@ public class GerenciadorAlunoBackup {
 			persistencia.save(listaTodosAlunos);
 		}
 	}
-
 	public Aluno editarDadosAluno(Aluno aluno) throws AlunoInexistenteException {
 		Aluno a = pesquisarAluno(aluno.getMatricula());
 		a.setEmail(aluno.getEmail());
@@ -43,7 +40,6 @@ public class GerenciadorAlunoBackup {
 		persistencia.save(listaTodosAlunos);
 		return a;
 	}
-
 	public Aluno pesquisarAluno(String matricula)
 			throws AlunoInexistenteException {
 		for (Aluno aluno : listaTodosAlunos) {
@@ -53,13 +49,11 @@ public class GerenciadorAlunoBackup {
 		throw new AlunoInexistenteException(
 				"N�o existe este aluno com esta matricula no Sitema LogBook");
 	}
-
 	public void deletarAluno(String matricula) throws AlunoInexistenteException {
 		Aluno a = pesquisarAluno(matricula);
 		listaTodosAlunos.remove(a);
 		persistencia.save(listaTodosAlunos);
 	}
-
 	public List<Aluno> getListaTodosAlunos() {
 		return listaTodosAlunos;
 	}
