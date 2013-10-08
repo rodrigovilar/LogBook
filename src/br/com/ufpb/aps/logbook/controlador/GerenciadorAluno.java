@@ -37,7 +37,7 @@ public class GerenciadorAluno {
 			}
 		}
 		throw new Excecao(
-				"Não existe aluno com esta matricula no Sitema LogBook");
+				"Não existe aluno com está matricula no Sitema LogBook");
 	}
 
 	public void deletarAluno(String matricula) {
