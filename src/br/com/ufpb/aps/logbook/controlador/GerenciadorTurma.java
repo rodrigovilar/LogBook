@@ -4,49 +4,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Turma;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.TurmaInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.TurmaJaCadastradaException;
+import br.com.ufpb.aps.logbook.excecao.TurmaSemDadosException;
 
 public class GerenciadorTurma {
 
 	private List<Turma> listaTurmas = new ArrayList<Turma>();
 
-	public void adicionarTurma(Turma novaTurma) {
-		listaTurmas.add(novaTurma);
+	public void adicionarTurma(Turma novaTurma) throws TurmaSemDadosException,
+			TurmaJaCadastradaException, TurmaInexistenteException {
+		if (novaTurma.getCodigo() == null || novaTurma.getAnoDaTurma() == null
+				|| novaTurma.getDisciplinas() == null
+				|| novaTurma.getProfessores() == null
+				|| novaTurma.getAlunos() == null)
+
+			throw new TurmaSemDadosException("Turma sem Dados");
+
+		try {
+			pesquisarTurma(novaTurma.getCodigo());
+			throw new TurmaJaCadastradaException(
+					"O cï¿½digo desta turma jï¿½ foi cadastrado no Sistema");
+		} catch (TurmaInexistenteException e) {
+			listaTurmas.add(novaTurma);
+		}
 	}
 
-	public Turma editarTurma(Turma turma) {
+	public Turma editarTurma(Turma turma) throws TurmaInexistenteException {
+		Turma t = pesquisarTurma(turma.getCodigo());
+		t.setCodigo(turma.getCodigo());
+		return t;
+	}
+
+	public Turma pesquisarTurma(String codigoTurma)
+			throws TurmaInexistenteException {
 		for (Turma t : listaTurmas) {
-			if (turma.getCodigo().equals(t.getCodigo())) {
-				t = turma;
-				listaTurmas.add(t);
+			if (t.getCodigo().equals(codigoTurma)) {
 				return t;
 			}
 		}
-		throw new Excecao("Não existe Turma com este código no sistema LogBook");
+
+		throw new TurmaInexistenteException(
+				"A turma nï¿½o foi encontrada no sistema");
+	}
+
+	public void deletarTurma(String codigoTurma)
+			throws TurmaInexistenteException {
+		Turma t = pesquisarTurma(codigoTurma);
+		listaTurmas.remove(t);
 	}
 
 	public List<Turma> listaTodasTurma() {
 		return getListaTurmas();
 
-	}
-
-	public Turma pesquisarTurma(String codigoTurma) {
-		Turma turma = new Turma();
-		for (Turma t : listaTurmas) {
-			if (t.getCodigo() == codigoTurma) {
-				turma = t;
-				break;
-			}
-		}
-		return turma;
-	}
-
-	public void deletarTurma(String codigoTurma) {
-		for (Turma t : this.listaTurmas) {
-			if (t.getCodigo() == codigoTurma) {
-				this.listaTurmas.remove(t);
-			}
-		}
 	}
 
 	public List<Turma> getListaTurmas() {

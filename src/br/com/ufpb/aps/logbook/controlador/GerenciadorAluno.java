@@ -1,19 +1,21 @@
 package br.com.ufpb.aps.logbook.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import br.com.ufpb.aps.logbook.entidade.Aluno;
 import br.com.ufpb.aps.logbook.excecao.AlunoInexistenteException;
 import br.com.ufpb.aps.logbook.excecao.AlunoJaCadastradoException;
 import br.com.ufpb.aps.logbook.excecao.AlunoSemDadosException;
 import br.com.ufpb.aps.logbook.persistencia.Persistencia;
 
-public class GerenciadorAlunoBackup {
+public class GerenciadorAluno {
 	private List<Aluno> listaTodosAlunos;
 	private Persistencia<Aluno> persistencia;
 
-	public GerenciadorAlunoBackup() {
+	public GerenciadorAluno() {
 		persistencia = new Persistencia<Aluno>("alunos.txt");
-		listaTodosAlunos = persistencia.read();
+		listaTodosAlunos = new ArrayList<Aluno>();
 	}
 
 	public void adicionarAluno(Aluno aluno) throws AlunoSemDadosException,
@@ -21,13 +23,18 @@ public class GerenciadorAlunoBackup {
 		if (aluno.getMatricula() == null || aluno.getNome() == null
 				|| aluno.getEmail() == null || aluno.getLogin() == null
 				|| aluno.getSenha() == null)
+
 			throw new AlunoSemDadosException(
 					"Imposs�vel adicionar aluno sem dados!");
+
 		try {
 			pesquisarAluno(aluno.getMatricula());
 			throw new AlunoJaCadastradoException(
 					"J� existe aluno cadastrado com a matr�cula informada!");
-		} catch (AlunoInexistenteException e1) {
+
+		}
+
+		catch (AlunoInexistenteException e1) {
 			listaTodosAlunos.add(aluno);
 			persistencia.save(listaTodosAlunos);
 		}
@@ -40,6 +47,7 @@ public class GerenciadorAlunoBackup {
 		a.setNome(aluno.getNome());
 		a.setSobrenome(aluno.getSobrenome());
 		a.setSenha(aluno.getSenha());
+
 		persistencia.save(listaTodosAlunos);
 		return a;
 	}
@@ -50,6 +58,7 @@ public class GerenciadorAlunoBackup {
 			if (aluno.getMatricula().equals(matricula))
 				return aluno;
 		}
+
 		throw new AlunoInexistenteException(
 				"N�o existe este aluno com esta matricula no Sitema LogBook");
 	}

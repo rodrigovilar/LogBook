@@ -1,8 +1,9 @@
 package br.com.ufpb.aps.logbook.entidade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Aluno extends Usuario {
+public class Aluno extends Usuario implements Serializable {
 
 	private String matricula;
 	
@@ -11,7 +12,7 @@ public class Aluno extends Usuario {
 
 	public Aluno(String nome, String sobrenome, String email, String senha,
 			String login, String matricula) {
-		super(nome, sobrenome, email, senha, login);
+		super(nome, sobrenome, email, senha, login, matricula);
 		this.matricula = matricula;
 	}
 
@@ -49,4 +50,5 @@ public class Aluno extends Usuario {
 	public void setListaTurmas(ArrayList<Turma> listaTurmas) {
 		this.listaTurmas = listaTurmas;
 	}
+
 }

@@ -5,61 +5,73 @@ import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Disciplina;
 import br.com.ufpb.aps.logbook.entidade.Turma;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.DisciplinaInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.DisciplinaJaCadastradaException;
+import br.com.ufpb.aps.logbook.excecao.DisciplinaSemDadosException;
+import br.com.ufpb.aps.logbook.persistencia.Persistencia;
 
 public class GerenciadorDisciplina {
 
-	private List<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
-	private List<Turma> listaTurmas = new ArrayList<Turma>();
+	private List<Disciplina> listaDisciplinas;
+	private List<Turma> listaTurmas;
+	private Persistencia<Disciplina> persistencia;
 
-	public void adicionarDisciplina(Disciplina disciplina) {
-		listaDisciplinas.add(disciplina);
+	public GerenciadorDisciplina() {
+		persistencia = new Persistencia<Disciplina>("disciplinas.txt");
+		listaDisciplinas = new ArrayList<Disciplina>();
+		listaTurmas = new ArrayList<Turma>();
 	}
 
-	public Disciplina editarDisciplina(Disciplina disciplina) {
+	public void adicionarDisciplina(Disciplina disciplina)
+			throws DisciplinaSemDadosException, DisciplinaJaCadastradaException {
+		if (disciplina.getCodigoDisciplina() == null
+				|| disciplina.getNomeDisciplina() == null
+				|| disciplina.getProfessor() == null)
+			throw new DisciplinaSemDadosException("Disciplina sem Dados");
+
+		try {
+			pesquisarDisciplina(disciplina.getCodigoDisciplina());
+			throw new DisciplinaJaCadastradaException(
+					"Disciplina jï¿½ cadastrada");
+		}
+
+		catch (DisciplinaInexistenteException e) {
+			listaDisciplinas.add(disciplina);
+			persistencia.save(listaDisciplinas);
+		}
+	}
+
+	public Disciplina editarDisciplina(Disciplina disciplina)
+			throws DisciplinaInexistenteException {
+		Disciplina d = pesquisarDisciplina(disciplina.getCodigoDisciplina());
+		d.setCodigoDisciplina(disciplina.getCodigoDisciplina());
+		persistencia.save(listaDisciplinas);
+		return d;
+	}
+
+	public Disciplina pesquisarDisciplina(String codigoDisciplina)
+			throws DisciplinaInexistenteException {
 		for (Disciplina d : listaDisciplinas) {
-			if (disciplina.getCodigoDisciplina()
-					.equals(d.getCodigoDisciplina())) {
-				d = disciplina;
-				listaDisciplinas.add(d);
+			if (d.getCodigoDisciplina() == codigoDisciplina) {
 				return d;
 			}
 		}
-		throw new Excecao("Não existe está Disciplina com este código no sistema LogBook");
+
+		throw new DisciplinaInexistenteException(
+				"A disciplina nï¿½o foi encontrada no sistema");
 	}
-	
-	public Disciplina pesquisarDisciplina(String codigoDisciplina) {
-		Disciplina disciplina = new Disciplina();
-		for (Disciplina d : listaDisciplinas) {
-			if (d.getCodigoDisciplina() == codigoDisciplina)
-				disciplina = d;
-			break;
-		}
-		return disciplina;
+
+	public void deletarDisciplina(String codigoDisciplina)
+			throws DisciplinaInexistenteException {
+		Disciplina d = pesquisarDisciplina(codigoDisciplina);
+		listaDisciplinas.remove(d);
+		persistencia.save(listaDisciplinas);
 	}
-	
-	/*public void deletarDisciplina(String codigoDisciplina) {
-		for(Disciplina d : listaDisciplinas) {
-			if(d.getCodigoDisciplina().equalsIgnoreCase(codigoDisciplina)) {
-				listaDisciplinas.remove(d);
-				return;
-			}
-		}
-	}**/
-	
-	public void deletarDisciplina(String codigoDisciplina) {
-		Disciplina disciplina = new Disciplina();
-		disciplina = this.pesquisarDisciplina(codigoDisciplina);
-		
-		if (disciplina.getCodigoDisciplina() == codigoDisciplina){
-			this.listaDisciplinas().remove(disciplina);
-		}
-	}
-	
+
 	public List<Disciplina> listaDisciplinas() {
 		return listaDisciplinas;
 	}
-	
+
 	public List<Disciplina> getListaDisciplinas() {
 		return listaDisciplinas;
 	}

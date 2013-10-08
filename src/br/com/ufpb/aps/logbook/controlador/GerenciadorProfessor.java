@@ -4,55 +4,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Professor;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.ProfessorInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.ProfessorJaCadastradoException;
+import br.com.ufpb.aps.logbook.excecao.ProfessorSemDadosException;
 
 public class GerenciadorProfessor {
 
-	//private List<Aluno> listaAlunos = new ArrayList<Aluno>();
-	//private List<Disciplina> listaDisciplina = new ArrayList<Disciplina>();
-	
 	private List<Professor> listaProfessores = new ArrayList<Professor>();
 
-	public void adicionarProfessor(Professor professor) {
-		listaProfessores.add(professor);
-	}
-
-	public Professor pesquisarProfessor(String codigo) {
-		for (Professor p : listaProfessores) {
-			if (p.getCodigo().equalsIgnoreCase(codigo))
-				;
-			return p;
-
+	public void adicionarProfessor(Professor professor) throws ProfessorSemDadosException, ProfessorJaCadastradoException, ProfessorInexistenteException 
+	{
+		if (professor.getNome() == null 
+				|| professor.getSobrenome() == null
+				|| professor.getEmail() == null
+				|| professor.getCodigo() == null
+				|| professor.getLogin() == null 
+				|| professor.getSenha() == null)
+			
+			throw new ProfessorSemDadosException ("Impossï¿½vel adicionar professor sem dados");
+		
+		try 
+		{
+			pesquisarProfessor(professor.getCodigo());
+			throw new ProfessorJaCadastradoException("Jï¿½ existe um professor cadastrado com o cï¿½digo informado!");
 		}
-		throw new Excecao(
-				"Não existe este aluno com esta matricula no Sitema LogBook");
-	}
-
-	public Professor editarProfessor(Professor professor) {
-		for (Professor p : listaProfessores) {
-			if (professor.getCodigo().equals(p.getCodigo())) {
-				p = professor;
-				listaProfessores.add(p);
-				return p;
-			}
-		}
-		throw new Excecao(
-				"Não existe Professor com este código no sistema LogBook");
-	}
-
-	public List<Professor> listaTodosProfessores() {
-		return listaProfessores;
-
-	}
-
-	public void deletarProfessor(String codigo) {
-		for (Professor p : listaProfessores) {
-
-			if (p.getCodigo().equalsIgnoreCase(codigo)) {
-				listaProfessores.remove(p);				
-				return;
-			}
+		
+		catch (ProfessorInexistenteException e1) 
+		{
+			listaProfessores.add(professor);
 		}
 	}
 	
+	public Professor pesquisarProfessor(String codigo) throws ProfessorInexistenteException 
+	{
+		for (Professor p : listaProfessores) 
+		{
+			if (p.getCodigo().equals(codigo));
+			return p;
+		}
+		
+		throw new ProfessorInexistenteException("Nï¿½o existe professor com este cï¿½digo no Sitema LogBook");
+	}
+
+	public Professor editarDadosProfessor(Professor professor) throws ProfessorInexistenteException 
+	{
+		Professor p = pesquisarProfessor(professor.getCodigo());
+		p.setEmail(p.getEmail());
+		p.setLogin(p.getLogin());
+		p.setNome(p.getNome());
+		p.setSenha(p.getSenha());
+		p.setSobrenome(p.getSobrenome());
+		
+		return p;
+	}
+
+	public void deletarProfessor(String codigo) throws ProfessorInexistenteException 
+	{
+		Professor p = pesquisarProfessor(codigo);
+		listaProfessores.remove(p);
+	}
+
+	public List<Professor> getlistaTodosProfessores() 
+	{
+		return listaProfessores;
+	}
 }

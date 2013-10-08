@@ -4,52 +4,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ufpb.aps.logbook.entidade.Usuario;
-import br.com.ufpb.aps.logbook.excecao.Excecao;
+import br.com.ufpb.aps.logbook.excecao.UsuarioInexistenteException;
+import br.com.ufpb.aps.logbook.excecao.UsuarioJaCadastradoException;
+import br.com.ufpb.aps.logbook.excecao.UsuarioSemDadosException;
 
 public class GerenciadorUsuario {
 
 	private List<Usuario> listaTodosUsuarios = new ArrayList<Usuario>();
 
-	public void adicionarUsuario(Usuario novoUsuario) {
-		listaTodosUsuarios.add(novoUsuario);
-	}
-
-	public void deletarUsuario(Usuario usuario) {
-			for (Usuario u : listaTodosUsuarios) {		
-				if (u.getEmail().equals(u.getEmail())) {
-					listaTodosUsuarios.remove(u);				
-					return;
-				}
-			}
-	}
-
-	public Usuario pesquisarUsuario(String email){
-		Usuario usuario = new Usuario();
-		for (Usuario u : listaTodosUsuarios){
-			if(u.getEmail().equalsIgnoreCase(email)){
-				usuario = u;
-			}
-			return usuario;
+	public void adicionarUsuario(Usuario novoUsuario) throws UsuarioSemDadosException, UsuarioJaCadastradoException 
+	{
+		if(novoUsuario.getEmail() == null 
+				|| novoUsuario.getCodigo() == null
+				|| novoUsuario.getLogin() == null
+				|| novoUsuario.getEmail() == null
+				|| novoUsuario.getNome() == null 
+				|| novoUsuario.getSenha() == null 
+				|| novoUsuario.getSobrenome() == null)
+		
+				throw new UsuarioSemDadosException ("Usuarios sem dados");
+			
+		try 
+		{
+			pesquisarUsuario(novoUsuario.getCodigo());
+			throw new UsuarioJaCadastradoException("Jï¿½ existe usuï¿½rio cadastrado com o cï¿½digo informado!");
 		}
-		throw new Excecao("Não existe usuario com este email no Sitema LogBook");
-	}
-
-	public Usuario editarUsuario(Usuario usuario) {
-		for(Usuario u: listaTodosUsuarios){
-			if(usuario.getEmail().equals(u.getEmail())){
-				u = usuario;
-				listaTodosUsuarios.add(u);
-				return u;
-			}
+		
+		catch (UsuarioInexistenteException e1 )
+		{
+			listaTodosUsuarios.add(novoUsuario);	
 		}
-		throw new Excecao("Não existe usuário com este e-mail no sistema LogBook");
 	}
 
-	public List<Usuario> getListaTodosUsuarios() {
+	public Usuario pesquisarUsuario (String codigo) throws UsuarioInexistenteException 
+	{
+		for (Usuario usuario : listaTodosUsuarios)
+		{
+			if(usuario.getCodigo().equals(codigo))
+				return usuario;
+		}
+		
+		throw new UsuarioInexistenteException("Nï¿½o existe usuario com este codigo no Sitema LogBook");
+	}
+	
+	public Usuario editarDadosUsuario(Usuario usuario) throws UsuarioInexistenteException 
+	{
+		Usuario u = pesquisarUsuario(usuario.getCodigo());
+		u.setEmail(usuario.getEmail());
+		u.setLogin(usuario.getLogin());
+		u.setNome(usuario.getNome());
+		u.setSenha(usuario.getSenha());
+		u.setSobrenome(usuario.getSobrenome());
+		return u;
+	}
+	
+	public void deletarUsuario(String codigo) throws UsuarioInexistenteException 
+	{
+		Usuario u = pesquisarUsuario(codigo); 
+		listaTodosUsuarios.remove(u);
+	}
+
+	public List<Usuario> getListaTodosUsuarios() 
+	{
 		return listaTodosUsuarios;
 	}
 
-	public void setListaTodosUsuarios(List<Usuario> listaTodosUsuarios) {
-		this.listaTodosUsuarios = listaTodosUsuarios;
-	}
 }

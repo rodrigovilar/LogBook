@@ -9,14 +9,16 @@ public class Usuario {
 	private String sobrenome;
 	private String senha;
 	private String login;
+	private String codigo;
 
 	public Usuario(String nome, String sobrenome, String email, String senha,
-			String login) {
+			String login, String codigo) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
 		this.login = login;
+		this.setCodigo(codigo);
 	}
 
 	public Usuario() {}
@@ -59,5 +61,13 @@ public class Usuario {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 }
